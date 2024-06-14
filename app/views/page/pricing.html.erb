@@ -1,0 +1,290 @@
+<% content_for :header do %>
+  <header class="bg-cover bg-center relative bg-no-repeat" style="background-image: url(<%= asset_url("fusion.png") %>);" data-controller="nav">
+    <div class="dark:bg-slate-900 relative">
+      <%= render "shared/nav_menu" %>
+    </div>
+
+    <div class="container mx-auto px-4">
+      <div class="text-center py-20 relative z-20">
+        <p class="font-semibold text-center uppercase text-sm text-primary-600 mb-4 dark:text-primary-500">Pricing</p>
+        <h1 class="text-5xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight mb-4">Priced with you in mind</h1>
+        <p class="text-lg text-slate-700 dark:text-slate-200 max-w-xl mx-auto">Maecenas faucibus mollis interdum. Maecenas sed diam eget
+          risus varius blandit
+          sit amet non magna.</p>
+      </div>
+    </div>
+  </header>
+<% end %>
+
+<div class="container mx-auto px-4 pt-6">
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 pb-4 border-b border-slate-100  dark:border-slate-800">
+    <div class="font-semibold text-slate-700 dark:text-slate-200">Plans</div>
+    <div class="lg:block hidden font-semibold text-slate-700 dark:text-slate-200">Professional</div>
+    <div class="lg:block hidden font-semibold text-slate-700 dark:text-slate-200">Premium</div>
+  </div>
+
+<!--  Preco mensal-->
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 justify-between py-8">
+    <div class="lg:block hidden">
+      <p class="text-slate-700 dark:text-slate-200">Pricing Monthly</p>
+    </div>
+    <div>
+      <p class="lg:hidden block font-semibold text-slate-700 dark:text-slate-200">Professional</p>
+      <p class="font-extrabold text-slate-900 text-4xl dark:text-slate-200">R$99<span class="text-sm font-normal text-slate-500 dark:text-slate-400">/mo</span>
+      </p>
+      <p class="text-slate-700 leading-tight my-4 dark:text-slate-300">
+        Cras justo odio, dapibus ac facilisis in, egestas eget.
+      </p>
+      <%= button_to "Mensal", checkout_path, params: { plan: 'professional_montlhy'}, method: :post, data: { turbo: false }, class: "btn btn-primary w-full" %>
+    </div>
+    <div>
+      <p class="lg:hidden block font-semibold text-slate-700 dark:text-slate-200">Premium</p>
+      <p class="font-extrabold text-slate-900 dark:text-slate-100 text-4xl">R$199<span
+        class="text-sm font-normal text-slate-500">/mo</span>
+      </p>
+      <p class="text-slate-700 dark:text-slate-200 leading-tight my-4">
+        Cras justo odio, dapibus ac facilisis in, egestas eget.
+      </p>
+      <%= button_to "Mensal", checkout_path, params: { plan: 'premium_montlhy' }, method: :post, data: { turbo: false }, class: "btn btn-primary w-full" %>
+    </div>
+  </div>
+
+<!--  preco anual-->
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 justify-between py-8">
+    <div class="lg:block hidden">
+      <p class="text-slate-700 dark:text-slate-200">Pricing Yearly</p>
+    </div>
+    <div>
+      <p class="lg:hidden block font-semibold text-slate-700 dark:text-slate-200">Professional</p>
+      <p class="font-extrabold text-slate-900 text-4xl dark:text-slate-200">R$49<span class="text-sm font-normal text-slate-500 dark:text-slate-400">/mo</span>
+      </p>
+      <p class="text-slate-700 leading-tight my-4 dark:text-slate-300">
+        Cras justo odio, dapibus ac facilisis in, egestas eget.
+      </p>
+      <%= button_to "Anual", checkout_path, params: { plan: 'professional_yearly'}, method: :post, data: { turbo: false }, class: "btn btn-primary w-full" %>
+    </div>
+    <div>
+      <p class="lg:hidden block font-semibold text-slate-700 dark:text-slate-200">Premium</p>
+      <p class="font-extrabold text-slate-900 dark:text-slate-100 text-4xl">R$100<span
+        class="text-sm font-normal text-slate-500">/mo</span>
+      </p>
+      <p class="text-slate-700 dark:text-slate-200 leading-tight my-4">
+        Cras justo odio, dapibus ac facilisis in, egestas eget.
+      </p>
+      <%= button_to "Anual", checkout_path, params: { plan: 'premium_yearly' }, method: :post, data: { turbo: false }, class: "btn btn-primary w-full" %>
+    </div>
+  </div>
+
+  <div class="bg-slate-100 dark:bg-slate-700/50 p-4 w-full">Features</div>
+
+  <ul class="list-none divide-y divide-slate-200 dark:divide-slate-700">
+    <li class="py-4">
+      <ul class="list-none grid grid-cols-3 lg:grid-cols-4 lg:gap-10 gap-4 items-center lg:px-4">
+        <li class="lg:col-span-1 col-span-3">
+          Justo magna vestibulum
+        </li>
+        <li class="flex justify-center items-center">
+          <div class="flex items-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Pro</span>
+          </div>
+        </li>
+        <li class="flex justify-center items-center">
+          <div class="flex items-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Premium</span>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="py-4">
+      <ul class="list-none grid grid-cols-3 lg:grid-cols-4 lg:gap-10 gap-4 items-center lg:px-4">
+        <li class="lg:col-span-1 col-span-3">
+          Magna parturient aenean
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Pro</span>
+          </div>
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Premium</span>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="py-4">
+      <ul class="list-none grid lg:grid-cols-4 grid-cols-3 lg:gap-10 gap-4 items-center lg:px-4">
+        <li class="col-span-3 lg:col-span-1">
+          Nullam id dolor id nibh ultricies vehicula ut id elit.
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Pro</span>
+          </div>
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Premium</span>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="py-4">
+      <ul class="list-none grid lg:grid-cols-4 grid-cols-3 lg:gap-10 gap-4 items-center lg:px-4">
+        <li class="lg:col-span-1 col-span-3">
+          Ornare tortor magna
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Pro</span>
+          </div>
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Premium</span>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="py-4">
+      <ul class="list-none grid lg:grid-cols-4 grid-cols-3 lg:gap-10 gap-4 items-center lg:px-4">
+        <li class="lg:col-span-1 col-span-3">
+          Inceptos cursus risus ligula
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "minus", classes: "w-4 h-4 flex-shrink-0 text-slate-400", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Pro</span>
+          </div>
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Premium</span>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="bg-slate-100 p-4 w-full dark:bg-slate-700/50">Customer support</div>
+
+  <ul class="list-none divide-y divide-slate-200 dark:divide-slate-700">
+    <li class="py-4">
+      <ul class="list-none grid lg:grid-cols-4 grid-cols-3 lg:gap-10 gap-4 items-center lg:px-4">
+        <li class="lg:col-span-1 col-span-3">
+          Ridiculus vestibulum euismod
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "minus", classes: "w-4 h-4 flex-shrink-0 text-slate-400", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Pro</span>
+          </div>
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Premium</span>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="py-4">
+      <ul class="lg:px-4 list-none grid lg:grid-cols-4 grid-cols-3 lg:gap-10 gap-4 items-center">
+        <li class="lg:col-span-1 col-span-3">
+          Magna parturient aenean
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Pro</span>
+          </div>
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Premium</span>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="py-4">
+      <ul class="lg:px-4 list-none grid lg:grid-cols-4 grid-cols-3 lg:gap-10 gap-4 items-center">
+        <li class="lg:col-span-1 col-span-3">
+          Etiam v ehicula sem
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Pro</span>
+          </div>
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Premium</span>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="py-4">
+      <ul class="lg:px-4 list-none grid lg:grid-cols-4 grid-cols-3 lg:gap-10 gap-4 items-center">
+        <li class="lg:col-span-1 col-span-3">
+          Ornare tortor magna
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Pro</span>
+          </div>
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Premium</span>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="py-4">
+      <ul class="lg:px-4 list-none grid lg:grid-cols-4 grid-cols-3 lg:gap-10 gap-4 items-center">
+        <li class="lg:col-span-1 col-span-3">
+          Inceptos cursus risus ligula
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "minus", classes: "w-4 h-4 flex-shrink-0 text-slate-400", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Pro</span>
+          </div>
+        </li>
+        <li class="flex justify-center">
+          <div class="flex items-center justify-center">
+            <%= icon "check", classes: "w-4 h-4 flex-shrink-0 text-green-500", variant: :solid %>
+            <span class="block lg:hidden w-full ml-2">Premium</span>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul class="list-none hidden lg:grid grid-cols-1 lg:grid-cols-4 lg:gap-10 gap-4 items-center pt-6 mb-6">
+    <li></li>
+    <li>
+      <%= button_to "Try Professional for free", checkout_path, params: { plan: 'professional_montlhy' }, method: :post, class: "btn btn-primary w-full", data: { turbo: false } %>
+    </li>
+    <li>
+      <%= button_to "Try premium for free", checkout_path, params: { plan: 'premium_montlhy' }, method: :post, class: "btn btn-primary w-full", data: { turbo: false } %>
+    </li>
+  </ul>
+</div>
+
+
+<%= render "shared/footer" %>

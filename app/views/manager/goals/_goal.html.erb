@@ -1,0 +1,59 @@
+<li
+  class="px-4 py-5 sm:text-base text-sm items-start grid grid-cols-2 sm:grid-cols-12 gap-3 sm:gap-0 before:content-[''] before:absolute relative before:left-2 before:h-[calc(100%-30px)] before:w-2 before:rounded-full before:bottom-1 before:top-4 pl-8 before:flex before:flex-col before:items-center before:justify-center hover:bg-slate-50 transition ease-in-out duration-200 dark:hover:bg-slate-800 <%= goal[:label_class] %>">
+  <div class="px-4 py-3">
+    <input type="checkbox" id="<%= convert_to_id(goal) %>-checkbox" data-goals--index-target="checkbox" value="<%= goal.id %>">
+  </div>
+
+  <div class="sm:col-span-3 col-span-1 mr-4">
+    <p><%= goal.name %></p>
+  </div>
+  <div class="sm:col-span-4 col-span-1 mr-4">
+    <p><%= goal.description %></p>
+  </div>
+  <div class="sm:col-span-1 col-span-1 mr-4">
+    <p><%= I18n.t("enum.statuses.#{goal.status}") %></p>
+  </div>
+  <div data-controller="dropdown" class="sm:col-span-1 relative col-span-1">
+    <div class="flex justify-end">
+      <button data-action="click->dropdown#toggle click@window->dropdown#hide"
+              class="-mt-1 block group p-2 rounded-lg focus:ring-4 focus:ring-primary-50 dark:focus:ring-slate-600/50">
+        <%= icon "cog-6-tooth", classes: "w-6 h-6 stroke-current text-slate-500 group-hover:text-primary-600 dark:group-hover:text-primary-400" %>
+      </button>
+    </div>
+    <ul data-dropdown-target="menu"
+        class="hidden transition transform origin-to-right absolute right-0 top-10 bg-white rounded-lg shadow-xl shadow-slate-900/10 border border-slate-200 md:w-[200px] w-full z-50 py-2 dark:bg-slate-700 dark:shadow-slate-900/50 dark:border-slate-500/60 md:text-sm text-base font-medium text-slate-600 dark:text-slate-200"
+        data-transition-enter-active="transition ease-out duration-300"
+        data-transition-enter-from="transform opacity-0 scale-95"
+        data-transition-enter-to="transform opacity-100 scale-100"
+        data-transition-leave-active="transition ease-in duration-300"
+        data-transition-leave-from="transform opacity-100 scale-100"
+        data-transition-leave-to="transform opacity-0 scale-95">
+      <li>
+        <%= link_to edit_manager_goal_path(goal), class: "px-4 py-[.4rem] hover:text-primary-600 dark:hover:text-primary-300 group flex items-center justify-start space-x-3" do %>
+          <%= icon "pencil-square", classes: "stroke-current w-5 h-5 text-slate-500 group-hover:text-primary-600 dark:group-hover:text-primary-400" %>
+          <span><%= t('.edit') %></span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to manager_goal_path(id: goal.id), class: "px-4 py-[.4rem] hover:text-primary-600 dark:hover:text-primary-300 group flex items-center justify-start space-x-3" do %>
+          <%= icon "eye", classes: "stroke-current w-5 h-5 text-slate-500 group-hover:text-primary-600 dark:group-hover:text-primary-400" %>
+          <span><%= t('.show') %></span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to manager_goal_path(goal),
+                    data: { turbo_method: :delete, turbo_confirm: t('.delete_confirm') },
+                    class: "px-4 py-[.4rem] hover:text-primary-600 dark:hover:text-primary-300 group flex items-center justify-start space-x-3" do %>
+          <%= icon "trash", classes: "stroke-current w-5 h-5 text-slate-500 group-hover:text-primary-600 dark:group-hover:text-primary-400" %>
+          <span><%= t('.delete') %></span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to manager_goals_done_index_path(goal_id: goal), class: "px-4 py-[.4rem] hover:text-primary-600 dark:hover:text-primary-300 group flex items-center justify-start space-x-3" do %>
+          <%= icon "check", classes: "stroke-current w-5 h-5 text-slate-500 group-hover:text-primary-600 dark:group-hover:text-primary-400" %>
+          <span><%= t('.done') %></span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</li>

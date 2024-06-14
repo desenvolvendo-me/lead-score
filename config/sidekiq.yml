@@ -1,0 +1,11 @@
+:concurrency: 5
+staging:
+  :concurrency: 10
+production:
+  :concurrency: 10
+:queues:
+  - [ realtime, 5 ]
+  - [ mailers, 5 ]
+  - [ high_priority, 3 ]
+  - [ default, 2 ]
+  - [ low_priority, 1 ]

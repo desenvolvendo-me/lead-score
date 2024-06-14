@@ -1,0 +1,25 @@
+<% content_for :header do %>
+  <div class="bg-rose-600 text-white text-center p-4" role="alert">
+    <p>Pagamento cancelado.</p>
+  </div>
+
+  <header class="bg-cover bg-center relative bg-no-repeat" style="background-image: url(<%= asset_url("fusion.png") %>);" data-controller="nav">
+    <div class="dark:bg-slate-900 relative">
+      <%= render "shared/nav_menu" %>
+    </div>
+
+    </div>
+      <div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-center">
+        <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
+          <div class="rounded-md bg-white p-6 dark:bg-slate-800 dark:text-white border border-slate-300/70 dark:border-slate-600/70 md:w-[350px]">
+            <h3 class="text-xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">Pagamento cancelado!</h3>
+            <p class="prose prose-slate dark:prose-invert mt-2 mb-4">Seu pagamento foi cancelado com sucesso.</p>
+            <button class="btn btn-primary"> <%= link_to "Voltar", billing_path, class: "px-4 py-2 lg:py-[.4rem] hover:text-primary-600 dark:hover:text-primary-400 block", data: { turbo: false } %></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+<% end %>
+
+<%= render "shared/footer" %>

@@ -1,0 +1,17 @@
+pt-BR:
+  views:
+    pagination:
+      first: "&laquo; Primeiro"
+      last: "Último &raquo;"
+      previous: "&lsaquo; Anterior"
+      next: "Próximo &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "%{entry_name} não encontradas"
+          one: "Monstrando <b>1</b> %{entry_name}"
+          other: "Monstrando <b>total %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Mostrando <b>%{first}&nbsp;-&nbsp;%{last}</b> %{entry_name} de <b>%{total}</b>"

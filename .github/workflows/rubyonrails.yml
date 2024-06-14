@@ -1,0 +1,61 @@
+name: "Ruby on Rails CI"
+#on: push
+on:
+  pull_request:
+    branches:
+      - main
+      - 'release/*'
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      postgres:
+        image: postgres:11-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: startup_mission_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://rails:password@localhost:5432/startup_mission_test"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7.5'
+          bundler: default
+          bundler-cache: true
+      - name: Set up Database
+        run: bin/rails db:migrate
+      - name: Run Tests
+        run: bundle exec rspec --exclude-pattern 'spec/features/**/*_spec.rb' --format progress
+      - uses: joshmfrankel/simplecov-check-action@main
+        with:
+          minimum_suite_coverage: 85
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Show Coverage directory
+        run: cat coverage/coverage.json
+
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        with:
+          bundler-cache: true
+      - name: Run RubyCritic score check
+        run: bundle exec rake rubycritic:check_score
+      - name: Lint Ruby files
+        run: bundle exec rubocop --parallel

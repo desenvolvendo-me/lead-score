@@ -1,0 +1,40 @@
+<!-- app/views/devise/confirmations/show.html.erb -->
+<% respond_to do |format| %>
+  <% format.html do %>
+    <% content_for :masthead do %>
+      <div class="text-center">
+        <h1 class="text-2xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight my-3">Email Confirmed!</h1>
+        <p class="mb-6 text-slate-700 dark:text-slate-200">Congratulations! Your email has been successfully confirmed.</p>
+      </div>
+    <% end %>
+
+    <%= render "auth_layout" do %>
+      <div class="text-center">
+        <p class="text-slate-700 dark:text-slate-200">Thank you for confirming your email. You can now access all the features of our application.</p>
+        <p class="text-slate-700 dark:text-slate-200">Feel free to explore and enjoy!</p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% format.turbo_stream do %>
+    turbo_stream.append "flash_messages" do
+    <%= render partial: "shared/flash_messages", locals: { messages: flash } %>
+    end
+
+    turbo_stream.append "content" do
+    <% content_for :masthead do %>
+      <div class="text-center">
+        <h1 class="text-2xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight my-3">Email Confirmed!</h1>
+        <p class="mb-6 text-slate-700 dark:text-slate-200">Congratulations! Your email has been successfully confirmed.</p>
+      </div>
+    <% end %>
+
+    <%= render "auth_layout" do %>
+      <div class="text-center">
+        <p class="text-slate-700 dark:text-slate-200">Thank you for confirming your email. You can now access all the features of our application.</p>
+        <p class="text-slate-700 dark:text-slate-200">Feel free to explore and enjoy!</p>
+      </div>
+    <% end %>
+    end
+  <% end %>
+<% end %>

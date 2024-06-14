@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= Railsui.config.application_name || "Rails UI " %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+  <%= stylesheet_link_tag "application", "https://unpkg.com/trix@2.0.0/dist/trix.css", "data-turbo-track": "reload" %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.turbo.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+
+  <%= render "shared/fonts" %>
+  <%= render "shared/meta" %>
+  <%= custom_colors_css %>
+  <%= yield :head %>
+</head>
+
+<body class="font-normal leading-normal text-slate-800 relative selection:bg-primary-500/40 bg-white dark:bg-slate-900 dark:text-slate-100 antialiased">
+<%= turbo_include_tags %>
+<%= render "shared/flash" %>
+<% if content_for(:header).present? %>
+  <%= yield :header %>
+<% else %>
+  <%= render "shared/nav" %>
+<% end %>
+<%= yield %>
+<%= railsui_launcher if Rails.env.development? %>
+</body>
+</html>

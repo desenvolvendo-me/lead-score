@@ -1,0 +1,37 @@
+<div class="max-w-3xl mx-auto px-4 my-16">
+  <div class="mb-4 pb-6 border-b">
+    <nav aria-label="breadcrumb" class="my-6 font-medium flex text-slate-500 dark:text-slate-200 text-sm">
+      <ol class="flex flex-wrap items-center space-x-3">
+        <li>
+          <%= link_to t('.last'), manager_goals_path, class: "hover:underline hover:text-slate-600 dark:hover:text-slate-400" %>
+        </li>
+        <li class="flex space-x-3">
+          <div class="flex items-center">
+            <span class="text-slate-300 dark:text-slate-500">/</span>
+          </div>
+          <span class="text-primary-600 dark:text-primary-500" aria-current="page">Edit</span>
+        </li>
+      </ol>
+    </nav>
+  </div>
+
+  <div>
+    <%= simple_form_for @goal , url: manager_goal_path(@goal),
+                        method: :patch,
+                        html: { class: 'form_goal_edit relative',
+                                data: {
+                                  controller: 'nested-form',
+                                  nested_form_wrapper_selector_value: '.nested-form-wrapper'
+                                }
+                        } do |form| %>
+      <div class="flex justify-between items-center mb-12">
+        <h1 class="font-bold text-4xl"><%= t('.title') %></h1>
+        <div>
+          <%= form.submit t('.save'), class: "cursor-pointer mr-2 items-center justify-center text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800" %>
+          <%= link_to t('.show'), manager_goal_path(@goal), class: "mr-2 items-center justify-center text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800" %>
+        </div>
+      </div>
+      <%= render "form", goal: @goal, form: form %>
+    <% end %>
+  </div>
+</div>

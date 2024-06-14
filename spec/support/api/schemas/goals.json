@@ -1,0 +1,5 @@
+{
+  "id": "file:/goals.json#",
+  "type": "array",
+  "items": { "$ref": "file:/goal.json#" }
+}

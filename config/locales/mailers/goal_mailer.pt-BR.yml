@@ -1,0 +1,5 @@
+pt-BR:
+  goal_mailer:
+    finished:
+      subject: 'Parabéns sua meta foi concluída!'
+      body: 'Isso é só um  %{variable}'

@@ -1,0 +1,39 @@
+<%= render "shared/error_messages", resource: form.object %>
+
+<div class=" flex w-full">
+  <div class="form-group w-1/2 mr-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-input" %>
+  </div>
+
+  <div class="form-group w-1/2">
+    <%= form.label :status, class: "form-label" %>
+    <%= form.select :status, Goal.statuses.keys.map { |key| [I18n.t("enum.statuses.#{key}"), key] }, { prompt: "Selecione uma categoria" }, class: "form-select" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= form.label :description, class: "form-label" %>
+  <%= form.text_area :description, class: "form-input" %>
+</div>
+
+<div class="flex justify-between items-center mb-4">
+  <h1 class="font-bold text-4xl">Tarefas</h1>
+  <div>
+    <button data-action="nested-form#add" class="mr-2 items-center justify-center text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 cursor-pointer">
+      <%= t('.add_task') %>
+    </button>
+  </div>
+</div>
+
+<template data-nested-form-target="template">
+  <%= form.simple_fields_for :tasks, Task.new, child_index: 'NEW_RECORD' do |tasks_form| %>
+    <%= render "task_fields", form: tasks_form %>
+  <% end %>
+</template>
+
+<%= form.simple_fields_for :tasks do |tasks_form| %>
+  <%= render "task_fields", form: tasks_form %>
+<% end %>
+
+<div data-nested-form-target="target"></div>

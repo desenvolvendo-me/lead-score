@@ -1,0 +1,48 @@
+pt-BR:
+  manager:
+    goals:
+      index:
+        title: 'Metas'
+        search: 'Pesquisar'
+        add: "Cadastrar meta"
+        filter_by: 'Filtrar'
+        filter_1: 'Concluídas'
+        filter_2: 'Não concluídas'
+        show: 'Mostrar'
+        actions: 'Ações'
+        action_1: 'Finalizar'
+        pages:
+          showing: 'Mostrando'
+          of: 'de'
+        previous: 'anterior'
+        next: 'próximo'
+      new:
+        title: 'Cadastrando meta'
+        add: 'Criar meta'
+        back: 'Voltar'
+        save: 'Salvar'
+        last: 'Metas'
+      edit:
+        title: 'Editando meta'
+        save: 'Salvar'
+        show: 'Mostrar'
+        last: 'Metas'
+      show:
+        title: 'Detalhando meta'
+        edit: 'Editar'
+        back: 'Voltar'
+        save: 'Salvar'
+        done: 'Finalizar'
+        delete: 'Apagar'
+        delete_confirm: 'Você tem certeza?'
+        last: 'Metas'
+      goal:
+        show: 'Mostrar'
+        edit: 'Editar'
+        done: 'Finalizar'
+        delete: 'Apagar'
+        delete_confirm: 'Você tem certeza?'
+      task_fields:
+        remove_task: 'Remover Tarefa'
+      form:
+        add_task: 'Adicionar tarefa'

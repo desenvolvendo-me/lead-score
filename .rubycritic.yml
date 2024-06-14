@@ -1,0 +1,14 @@
+mode_ci:
+  enabled: true # default is false
+branch: 'production' # default is main
+threshold_score: 10 # default is 0
+deduplicate_symlinks: true # default is false
+suppress_ratings: true # default is false
+no_browser: true # default is false
+formats: # Available values are: html, json, console, lint. Default value is html.
+  - html
+minimum_score: 95 # default is 0
+paths: # Files to analyse. Churn calculation is scoped to these files when using Git SCM.
+  - 'app/businesses/'
+  - 'app/controllers/'
+  - 'app/models/'

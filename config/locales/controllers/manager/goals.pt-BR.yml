@@ -1,0 +1,9 @@
+pt-BR:
+  manager:
+    goals:
+      create: 'Meta cadastrada com sucesso.'
+      update: 'Meta atualizada com sucesso.'
+      destroy: 'Meta apagada com sucesso.'
+      done:
+        one: 'Meta finalizada com sucesso.'
+        other: 'Metas finalizadas com sucesso.'

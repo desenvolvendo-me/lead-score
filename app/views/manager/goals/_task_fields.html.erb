@@ -1,0 +1,25 @@
+<div class="nested-form-wrapper" data-new-record="<%= form.object.new_record? %>">
+  <div class="flex flex-col">
+    <div class=" flex w-full">
+      <div class="form-group w-1/2 mr-3">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-input" %>
+      </div>
+
+      <div class="form-group w-1/2">
+        <%= form.label :status, class: "form-label" %>
+        <%= form.select :status, Task.statuses.keys.map { |key| [I18n.t("enum.statuses.#{key}"), key] }, { prompt: "Selecione uma categoria" }, class: "form-select" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_area :description, class: "form-input" %>
+    </div>
+    <div class="flex w-full justify-end">
+      <button type="button" data-action="nested-form#remove" class="mr-2 items-center justify-center text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 cursor-pointer">
+        <%= t('.remove_task') %>
+      </button>
+    </div>
+    <%= form.hidden_field :_destroy %>
+  </div>
+</div>
