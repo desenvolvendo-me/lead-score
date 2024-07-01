@@ -3,10 +3,11 @@ require_relative '../../../app/businesses/data_processing/json_loader'
 
 
 RSpec.describe DataProcessing::JsonLoader, type: :model do
+
   describe '.import_answers' do
-    let(:table_name) { 'scores' }
-    let(:table_id) { 2 }
-    let(:table_field) { 'data' }
+    let(:table_name) { 'test' }
+    let(:table_id) { 1 }
+    let(:table_field) { 'test' }
 
     context 'when the record exists' do
       let(:json_data) do
@@ -31,7 +32,7 @@ RSpec.describe DataProcessing::JsonLoader, type: :model do
       before do
         allow(ActiveRecord::Base.connection).to receive(:execute)
                                                   .with(ActiveRecord::Base.sanitize_sql(["SELECT * FROM #{table_name} WHERE id = ?", table_id]))
-                                                  .and_return([{ 'data' => json_data.to_json }])
+                                                  .and_return([{ table_field => json_data.to_json }])
       end
 
       it 'returns the parsed quiz data' do
