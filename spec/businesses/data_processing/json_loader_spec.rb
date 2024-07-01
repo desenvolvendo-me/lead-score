@@ -1,5 +1,6 @@
-require_relative '../../app/businesses/data_processing/json_loader'
 require 'rails_helper'
+require_relative '../../../app/businesses/data_processing/json_loader'
+
 
 RSpec.describe DataProcessing::JsonLoader, type: :model do
   describe '.import_answers' do
