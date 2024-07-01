@@ -13,14 +13,14 @@ RSpec.describe DataProcessing::JsonLoader, type: :model do
       let(:json_data) do
         [
           {
-            "lead" => { "name" => "Marco", "email" => "marcodotcastro@gmail.com", "telefone" => "18121212" },
+            "lead" => { "name" => "Marco", "email" => "marcodotcastro@gmail.com", "phone" => "18121212" },
             "answers" => {
               "Você está em transição de carreira?" => "Sim",
               "Você já comprou algum curso de Programação?" => "Sim"
             }
           },
           {
-            "lead" => { "name" => "Joao", "email" => "Joao@gmail.com", "telefone" => "111111111" },
+            "lead" => { "name" => "Joao", "email" => "Joao@gmail.com", "phone" => "111111111" },
             "answers" => {
               "Você está em transição de carreira?" => "Nao",
               "Você já comprou algum curso de Programação?" => "Nao"
@@ -39,11 +39,11 @@ RSpec.describe DataProcessing::JsonLoader, type: :model do
         result = DataProcessing::JsonLoader.import_answers(table_name, table_field, table_id)
         expect(result).to eq([
                                [
-                                 { "name" => "Marco", "email" => "marcodotcastro@gmail.com", "telefone" => "18121212" },
+                                 { "name" => "Marco", "email" => "marcodotcastro@gmail.com", "phone" => "18121212" },
                                  { "Você está em transição de carreira?" => "Sim", "Você já comprou algum curso de Programação?" => "Sim" }
                                ],
                                [
-                                 { "name" => "Joao", "email" => "Joao@gmail.com", "telefone" => "111111111" },
+                                 { "name" => "Joao", "email" => "Joao@gmail.com", "phone" => "111111111" },
                                  { "Você está em transição de carreira?" => "Nao", "Você já comprou algum curso de Programação?" => "Nao" }
                                ]
                              ])
