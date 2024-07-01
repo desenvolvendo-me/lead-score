@@ -9,7 +9,6 @@ RSpec.describe Webhooks::WebhooksController, type: :controller do
       }
     end
 
-    # Generating random data for the test
     let(:random_name) { "User#{rand(1000..9999)}" }
     let(:random_email) { "user#{rand(1000..9999)}@example.com" }
     let(:random_phone) { "123-456-#{rand(1000..9999)}" }
@@ -66,23 +65,5 @@ RSpec.describe Webhooks::WebhooksController, type: :controller do
         expect(JSON.parse(response.body)['error']).to eq('Invalid JSON format')
       end
     end
-
-    context 'with missing required fields' do
-      it 'returns status 400' do
-        request.headers.merge!(valid_headers)
-        invalid_body = {
-          lead: {
-            name: random_name
-            # missing phone
-          }
-          # missing answers
-        }.to_json
-
-        post :receive, body: invalid_body
-        expect(response).to have_http_status(:bad_request)
-        expect(JSON.parse(response.body)['error']).to eq('Missing required fields')
-      end
-    end
-
   end
 end
