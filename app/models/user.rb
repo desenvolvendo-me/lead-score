@@ -4,6 +4,7 @@
 #
 #  id                     :bigint           not null, primary key
 #  admin                  :boolean          default(FALSE)
+#  api_token              :string
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
@@ -26,12 +27,13 @@
 #
 # Indexes
 #
+#  index_users_on_api_token             (api_token) UNIQUE
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  after_create :send_confirmation_instructions
+  after_create :send_confirmation_instructions, :generate_api_token
 
   has_one :client, dependent: :destroy
 
@@ -58,5 +60,12 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}".strip
+  end
+
+  private
+
+  def generate_api_token
+    self.api_token = SecureRandom.hex(20)
+    save
   end
 end
