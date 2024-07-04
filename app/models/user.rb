@@ -62,8 +62,6 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}".strip
   end
 
-  private
-
   def generate_api_token
     self.api_token = SecureRandom.hex(20)
     save

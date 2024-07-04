@@ -3,13 +3,14 @@ module Users
     before_action :authenticate_user!
 
     def index
-      # Exibe a página para gerar o token
+      @token = current_user.api_token
     end
 
     def generate
-      current_user.update(api_token: SecureRandom.hex(20))
-      redirect_to users_tokens_path, notice: "Token gerado com sucesso."
+      current_user.generate_api_token
+      @token = current_user.api_token
+      flash[:notice] = "Token generated successfully"
+      redirect_to users_generate_token_path
     end
   end
 end
-

@@ -26,9 +26,9 @@ module Webhooks
 
     def verify_api_token
       provided_token = request.headers['Authorization']
-      expected_token = 'your-secret-api-token'
+      user = User.find_by(api_token: provided_token)
 
-      unless ActiveSupport::SecurityUtils.secure_compare(provided_token, expected_token)
+      unless user
         render json: { error: 'Unauthorized' }, status: :unauthorized
       end
     end

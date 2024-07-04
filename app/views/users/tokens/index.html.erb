@@ -1,2 +1,16 @@
-<h1>Generate API Token</h1>
-<%= button_to 'Generate Token', users_generate_token_path, method: :post %>
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h1 class="text-3xl font-bold text-center mb-6">Generate API Token</h1>
+    <%= form_with url: users_generate_token_path, method: :post, local: true do %>
+      <div class="flex justify-center">
+        <%= submit_tag 'Generate Token', class: 'bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-300 ease-in-out' %>
+      </div>
+    <% end %>
+
+    <% if @token.present? %>
+      <div class="mt-6 p-4 bg-green-100 text-green-800 rounded">
+        <p class="text-center">Your API Token: <strong><%= @token %></strong></p>
+      </div>
+    <% end %>
+  </div>
+</div>
