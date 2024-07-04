@@ -1,32 +1,29 @@
 require 'json'
 
 # Caminho para o arquivo JSON
-file_path = 'data/table_customers.json'
+file_path = 'data/tabela_peso.json'
 
 # Ler o arquivo JSON
 file = File.read(file_path)
 data = JSON.parse(file)
 
-# Inicializar hashes para armazenar perguntas e respostas
-questions_answers_list = []
-
-
-# Processar os dados
-data.each do |entry|
-  questions = entry["questions"]
-  questions.each do |question, answer|
-    questions_answers_list << question
-    questions_answers_list << answer
-  end
+# Verificar se o JSON está formatado corretamente
+unless data.is_a?(Hash)
+  puts "Erro: O JSON não está formatado como um hash."
+  exit
 end
 
 # Exibir as perguntas e respostas
-puts "Perguntas:"
-questions_answers_list.each do |question, answer|
-  puts question
-  puts answer
+data.each do |question, answers|
+  unless answers.is_a?(Hash)
+    puts "Erro: Respostas para a pergunta '#{question}' não estão formatadas corretamente."
+    next
+  end
 
+  puts "Pergunta: #{question}"
+  answers.each do |answer, weight|
+    puts "  Resposta: #{answer} - Peso: #{weight}"
+  end
 end
 
-puts "-" * 20
-
+puts "Validação completa."
