@@ -1,9 +1,9 @@
-# spec/data_processing/json_loader_spec.rb
+# spec/data_processing/score_calculator_spec.rb
 
 require 'rails_helper'
 
-RSpec.describe DataProcessing::JsonLoader, type: :class do
-  describe '.import_answers' do
+RSpec.describe DataProcessing::ScoreCalculator, type: :class do
+  describe '.calculate_score' do
     let(:json_answers) do
       {
         "Você já comprou algum curso de Programação?" => "Sim",
@@ -18,34 +18,46 @@ RSpec.describe DataProcessing::JsonLoader, type: :class do
       }
     end
 
-    it 'processes the JSON answers and weights correctly' do
-      result = described_class.import_answers(json_answers, json_weights)
+    it 'calculates the total score correctly' do
+      total_score = DataProcessing::ScoreCalculator.calculate_score(json_answers, json_weights)
 
-      expected_answers = {
-        "Você já comprou algum curso de Programação?" => "Sim",
-        "Você está em transição de carreira?" => "Sim",
-      }
+      expected_score = 5 + 4
 
-      expected_weights = {
-        "Você já comprou algum curso de Programação?" => 5,
-        "Você está em transição de carreira?" => 4,
-      }
-
-      expect(result).to eq([expected_answers, expected_weights])
+      expect(total_score).to eq(expected_score)
     end
 
-    context 'with empty JSON for answers and weights' do
-      let(:json_answers) { {} }
-      let(:json_weights) { {} }
+    it 'calculates the score correctly with different answers' do
+      json_answers = {
+        "Você já comprou algum curso de Programação?" => "Não",
+        "Você está em transição de carreira?" => "Não",
+      }
 
-      it 'returns empty hashes for answers and weights' do
-        result = described_class.import_answers(json_answers, json_weights)
+      total_score = DataProcessing::ScoreCalculator.calculate_score(json_answers, json_weights)
+      expected_score = 1 + 2
 
-        expected_answers = {}
-        expected_weights = {}
+      expect(total_score).to eq(expected_score)
+    end
 
-        expect(result).to eq([expected_answers, expected_weights])
-      end
+    it 'calculates the score correctly with mixed answers' do
+      json_answers = {
+        "Você já comprou algum curso de Programação?" => "Sim",
+        "Você está em transição de carreira?" => "Não",
+      }
+
+      total_score = DataProcessing::ScoreCalculator.calculate_score(json_answers, json_weights)
+      expected_score = 5 + 2
+
+      expect(total_score).to eq(expected_score)
+    end
+
+
+    it 'returns 0 for empty answers and weights' do
+      json_answers = {}
+      json_weights = {}
+
+      total_score = DataProcessing::ScoreCalculator.calculate_score(json_answers, json_weights)
+
+      expect(total_score).to eq(0)
     end
   end
 end
