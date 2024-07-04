@@ -33,7 +33,7 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  after_create :send_confirmation_instructions, :generate_api_token
+  after_create :send_confirmation_instructions
 
   has_one :client, dependent: :destroy
 

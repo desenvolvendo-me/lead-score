@@ -8,9 +8,7 @@ module Users
 
     def generate
       current_user.generate_api_token
-      @token = current_user.api_token
-      flash[:notice] = "Token generated successfully"
-      redirect_to users_generate_token_path
+      redirect_to users_tokens_path, notice: 'Token gerado com sucesso.'
     end
   end
 end
