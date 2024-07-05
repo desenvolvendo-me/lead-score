@@ -1,5 +1,3 @@
-# spec/data_processing/score_calculator_spec.rb
-
 require 'rails_helper'
 
 RSpec.describe DataProcessing::ScoreCalculator, type: :class do
