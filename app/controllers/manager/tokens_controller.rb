@@ -1,4 +1,4 @@
-module Users
+module Manager
   class TokensController < ApplicationController
     before_action :authenticate_user!
 
@@ -8,7 +8,8 @@ module Users
 
     def generate
       current_user.generate_api_token
-      redirect_to users_tokens_path, notice: 'Token gerado com sucesso.'
+      redirect_to manager_tokens_path, notice: 'Token gerado com sucesso.'
     end
   end
 end
+

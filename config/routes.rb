@@ -42,10 +42,11 @@ Rails.application.routes.draw do
   root action: :index, controller: "railsui/page"
 
   devise_for :users
-  namespace :users do
+  namespace :manager do
     get 'tokens', to: 'tokens#index'
-    post 'generate_token', to: 'tokens#generate'
+    post 'tokens/generate_token', to: 'tokens#generate'
   end
+
 
   mount Sidekiq::Web => '/sidekiq'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

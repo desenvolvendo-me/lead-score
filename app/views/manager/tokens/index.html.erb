@@ -1,12 +1,13 @@
+<!-- app/views/manager/tokens/index.html.erb -->
+
 <div class="min-h-screen flex items-center justify-center bg-gray-100">
   <div class="p-8 rounded-lg shadow-lg w-full max-w-md">
     <h1 class="text-3xl font-bold text-center mb-6">Generate API Token</h1>
-    <%= form_with url: users_generate_token_path, method: :post, local: true do %>
+    <form action="<%= manager_tokens_generate_token_path %>" accept-charset="UTF-8" method="post">
       <div class="flex justify-center">
-        <%= submit_tag 'Generate Token', class: 'bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-300 ease-in-out' %>
+        <input type="submit" name="commit" value="Generate Token" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" data-disable-with="Generate Token" />
       </div>
-    <% end %>
-
+    </form>
     <% if @token.present? %>
       <div class="mt-6 p-4 bg-green-100 text-green-800 rounded">
         <p class="text-center">Your API Token: <strong><%= @token %></strong></p>
