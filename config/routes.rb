@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   resources :posts
 
 
-  resources :scores, only: [:index, :show]
-
   namespace :webhooks do
     post 'receive', to: 'webhooks#receive'
   end
@@ -75,15 +73,6 @@ Rails.application.routes.draw do
     end
 
     resources :scores
-    namespace :scores do
-      namespace :done do
-        get :index
-        get :show
-        post :many
-      end
-    end
-
-
     get '', to: 'home#index', as: :home
   end
 
