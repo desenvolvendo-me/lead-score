@@ -8,9 +8,10 @@ RSpec.describe Score::Calculator do
 
     it 'calculates the total score correctly' do
       lead_answers = answer_instance.question_answer
-      answers_weights = weight_instance.question_answer
+      json_answers = lead_answers["answers"]
+      json_weights = weight_instance.question_answer
 
-      total_score = Score::Calculator.calculate_score(lead_answers, answers_weights)
+      total_score = Score::Calculator.calculate_score(json_answers, json_weights)
 
       expected_score = 5 + 4 # Valor esperado baseado nos pesos fornecidos
       expect(total_score).to eq(expected_score)
@@ -31,9 +32,10 @@ RSpec.describe Score::Calculator do
       })
 
       lead_answers = answer_instance.question_answer
-      answers_weights = weight_instance.question_answer
+      json_answers = lead_answers["answers"]
+      json_weights = weight_instance.question_answer
 
-      total_score = Score::Calculator.calculate_score(lead_answers, answers_weights)
+      total_score = Score::Calculator.calculate_score(json_answers, json_weights)
 
       # Calculando o score esperado com base nos novos valores do JSON
       expected_score = 5 + 2 # Supondo os pesos modificados no JSON de weight_table_instance
