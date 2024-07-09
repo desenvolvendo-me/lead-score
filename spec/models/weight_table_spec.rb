@@ -1,26 +1,30 @@
-# == Schema Information
-#
-# Table name: weight_tables
-#
-#  id              :bigint           not null, primary key
-#  description     :string
-#  question_answer :jsonb            not null
-#  status          :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#
 require 'rails_helper'
 
-RSpec.describe WeightTable, type: :model do
-  it "valid" do
-    weight_table = WeightTable.create(description: "Turma 21", status: "active", question_answer: { "pergunta": { "resposta": 10 } })
+RSpec.describe WeightValidator do
+  describe "#valid_structure?" do
+    it "returns true for valid JSON structure" do
+      json_data = '{"pergunta1": {"resposta1": 10, "resposta2": 5}}'
+      expect(WeightValidator.valid_structure?(json_data)).to be_truthy
+    end
 
-    expect(weight_table.valid?).to be_truthy
-  end
+    it "returns false if JSON is not a hash" do
+      json_data = '[{"pergunta1": {"resposta1": 10, "resposta2": 5}}]'
+      expect(WeightValidator.valid_structure?(json_data)).to be_falsey
+    end
 
-  it "invalid" do
-    weight_table = WeightTable.create(description: "Turma 21", status: "active", question_answer: { "pergunta": { "resposta": "peso" } })
+    it "returns false if keys are not strings" do
+      json_data = '{123: {"resposta1": 10, "resposta2": 5}}'
+      expect(WeightValidator.valid_structure?(json_data)).to be_falsey
+    end
 
-    expect(weight_table.valid?).to be_falsey
+    it "returns false if inner keys are not strings" do
+      json_data = '{"pergunta1": {123: 10, "resposta2": 5}}'
+      expect(WeightValidator.valid_structure?(json_data)).to be_falsey
+    end
+
+    it "returns false if inner values are not numeric" do
+      json_data = '{"pergunta1": {"resposta1": "peso", "resposta2": 5}}'
+      expect(WeightValidator.valid_structure?(json_data)).to be_falsey
+    end
   end
 end
