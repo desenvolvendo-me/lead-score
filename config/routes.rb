@@ -96,5 +96,4 @@ Rails.application.routes.draw do
       patch :update_stripe_info
     end
   end
-
 end
