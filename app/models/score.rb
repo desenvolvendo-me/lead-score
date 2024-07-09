@@ -16,9 +16,6 @@ class Score < ApplicationRecord
   # JSONB field
   attribute :data, :jsonb, default: {}
 
-  # callbacks, se necessário
-  # after_save :process_data
-
   def to_s
     name
   end

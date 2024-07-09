@@ -1,60 +1,26 @@
-<div class="bg-white border-b dark:bg-slate-800/50 dark:border-b dark:border-slate-700 px-4">
-  <div class="container mx-auto sm:flex flex-wrap justify-between items-center">
-    <nav role="messages nav">
-    </nav>
-  </div>
-</div>
+<!-- app/views/manager/scores/index.html.erb -->
 
-<div class="px-4 mb-16">
-  <div class="container mx-auto rounded-lg border border-slate-300/80 shadow shadow-slate-100 dark:shadow-slate-950 mt-6 bg-white dark:bg-slate-800 dark:border-slate-600/80">
-    <ul class="divide-y divide-slate-300/80 dark:divide-slate-600">
-      <% [
-           {
-             img: { id: "32", variant: "women" },
-             name: "Jennifer Thompson",
-             score: "75",
-           },
-           {
-             img: { id: "42", variant: "women" },
-             name: "Emily Wilson",
-             score: "50",
-           },
-           {
-             img: { id: "46", variant: "men" },
-             name: "David Roberts",
-             score: "45",
-           },
-         ].each do |person| %>
-        <!-- person start -->
-        <li class="px-4 py-5 sm:text-base text-sm items-start grid grid-cols-2 sm:grid-cols-12 gap-3 sm:gap-0 hover:bg-slate-50 transition ease-in-out duration-200 dark:hover:bg-slate-800">
-          <div class="flex items-center space-x-3 sm:col-span-3 sm:mb-0 mb-4 col-span-2">
-            <% if respond_to?(:admin_profile_path) %>
-              <%= link_to admin_profile_path do %>
-                <%= image_tag demo_avatar_url(id: person[:img][:id], variant: person[:img][:variant]), alt: person[:name], class: "rounded-full sm:w-10 w-14 sm:h-10 h-14" %>
-              <% end %>
-            <% else %>
-              <%= link_to "#" do %>
-                <%= image_tag demo_avatar_url(id: person[:img][:id], variant: person[:img][:variant]), alt: person[:name], class: "rounded-full sm:w-10 w-14 sm:h-10 h-14" %>
-              <% end %>
-            <% end %>
-            <div>
-              <p class="text-slate-500 text-sm">Name</p>
-              <%= link_to person[:name], "#", class: "sm:font-medium text-slate-900 sm:text-base text-lg font-semibold dark:text-slate-200" %>
-            </div>
-          </div>
-          <div class="sm:col-span-2 col-span-1">
-            <p class="text-sm text-slate-500">Score</p>
-            <p><%= person[:score] %></p>
-          </div>
-        </li>
-        <!-- person end -->
-      <% end %>
-    </ul>
-  </div>
-
-  <nav aria-label="Page navigation" class="text-slate-500 sm:text-sm text-base font-medium dark:text-slate-300 mt-8 container mx-auto">
-    <ul class="flex flex-wrap items-center justify-start sm:space-x-0 space-x-2">
-    </ul>
-  </nav>
-</div>
-</div>
+<ul class="divide-y divide-slate-300/80 dark:divide-slate-600">
+  <% @scores.each do |score| %>
+    <!-- score start -->
+    <li class="px-4 py-5 sm:text-base text-sm items-start grid grid-cols-2 sm:grid-cols-12 gap-3 sm:gap-0 hover:bg-slate-50 transition ease-in-out duration-200 dark:hover:bg-slate-800">
+      <div class="sm:col-span-3 sm:mb-0 mb-4 col-span-2">
+        <div class="flex flex-col items-start space-y-1">
+          <!-- Mostra o rótulo "Name" -->
+          <p class="text-slate-500 text-sm">Name</p>
+          <!-- Mostra o nome do score abaixo do rótulo -->
+          <p class="sm:font-medium text-slate-900 sm:text-base text-lg font-semibold dark:text-slate-200"><%= score.name %></p>
+        </div>
+      </div>
+      <div class="sm:col-span-2 col-span-1">
+        <div class="flex flex-col items-start space-y-1">
+          <!-- Mostra o rótulo "Score" -->
+          <p class="text-sm text-slate-500">Score</p>
+          <!-- Mostra o valor do score abaixo do rótulo -->
+          <p><%= score.value %></p>
+        </div>
+      </div>
+    </li>
+    <!-- score end -->
+  <% end %>
+</ul>
