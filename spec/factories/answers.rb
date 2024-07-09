@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: answer_tables
+# Table name: answers
 #
 #  id              :bigint           not null, primary key
 #  question_answer :jsonb
@@ -8,7 +8,7 @@
 #  updated_at      :datetime         not null
 #
 FactoryBot.define do
-  factory :answer_table do
+  factory :answer do
     question_answer {
       {
         lead: {

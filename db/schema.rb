@@ -78,7 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_08_224524) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "answer_tables", force: :cascade do |t|
+  create_table "answers", force: :cascade do |t|
     t.jsonb "question_answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -149,7 +149,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_08_224524) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "weight_tables", force: :cascade do |t|
+  create_table "weights", force: :cascade do |t|
     t.string "description"
     t.string "status"
     t.jsonb "question_answer", default: "{}", null: false
