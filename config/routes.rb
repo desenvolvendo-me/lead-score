@@ -1,8 +1,15 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+
   resources :posts
 
+
   resources :scores, only: [:index, :show]
+
+  namespace :webhooks do
+    post 'receive', to: 'webhooks#receive'
+  end
+
 
 	get 'admin/integrations', to: 'page#integrations'
 	get 'admin/team', to: 'page#team'
