@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Manager::ScoresController, type: :controller do
   describe 'GET #index' do
     it 'assigns @scores' do
-      user = create(:user)  # Assuming you have a User model and a factory setup
+      user = create(:user)
       sign_in user
 
       get :index

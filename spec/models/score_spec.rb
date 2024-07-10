@@ -1,5 +1,3 @@
-# spec/models/score_spec.rb
-
 require 'rails_helper'
 
 RSpec.describe Score, type: :model do
