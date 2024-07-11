@@ -1,33 +1,27 @@
-require 'json'
+# app/validators/weight_validator.rb
+class WeightValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    if value.is_a?(Hash)
+      value.each do |question, answers|
+        if question.blank?
+          record.errors.add(attribute, "contains a question with a blank key")
+        end
 
-class WeightValidator
-  def self.valid_structure?(json_data)
-    begin
-      data = JSON.parse(json_data)
-    rescue JSON::ParserError => e
-      puts "JSON::ParserError: #{e.message}"
-      return false
-    end
-
-    unless data.is_a?(Hash)
-      puts "Data is not a Hash: #{data.class}"
-      return false
-    end
-
-    data.each do |key, value|
-      unless key.is_a?(String) && value.is_a?(Hash)
-        puts "Invalid key or value: key = #{key} (#{key.class}), value = #{value} (#{value.class})"
-        return false
-      end
-
-      value.each do |inner_key, inner_value|
-        unless inner_key.is_a?(String) && inner_value.is_a?(Numeric)
-          puts "Invalid inner key or value: inner_key = #{inner_key} (#{inner_key.class}), inner_value = #{inner_value} (#{inner_value.class})"
-          return false
+        if answers.is_a?(Hash)
+          answers.each do |answer, weight|
+            if answer.blank?
+              record.errors.add(attribute, "contains an answer with a blank key")
+            end
+            if weight.blank?
+              record.errors.add(attribute, "contains an answer with a blank value")
+            end
+          end
+        else
+          record.errors.add(attribute, "contains a non-hash value for a question")
         end
       end
+    else
+      record.errors.add(attribute, "is not a hash")
     end
-
-    true
   end
 end
