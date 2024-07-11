@@ -3,7 +3,7 @@ module Manager
     before_action :authenticate_user!
 
     def index
-      @token = current_user.api_token
+      @tokens = current_user.api_tokens
     end
 
     def generate
@@ -23,7 +23,7 @@ module Manager
     private
 
     def generate_token_for_current_user
-      current_user.generate_api_token
+      current_user.api_tokens.create(token: SecureRandom.hex(20), client: current_user.client)
     rescue StandardError
       false
     end

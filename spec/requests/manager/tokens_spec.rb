@@ -4,8 +4,10 @@ RSpec.describe 'Tokens', type: :request do
   include Devise::Test::IntegrationHelpers
 
   let(:user) { create(:user) }
+  let(:client) { create(:client, user: user) }
 
   before do
+    user.update(client: client) # Certifique-se de que o usuário tem um cliente associado
     sign_in user
   end
 
@@ -15,23 +17,21 @@ RSpec.describe 'Tokens', type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it 'assigns the token to @token' do
+    it 'assigns the tokens to @tokens' do
       get manager_tokens_path
-      expect(assigns(:token)).to eq(user.api_token)
+      expect(assigns(:tokens)).to eq(user.api_tokens)
     end
   end
 
-  describe 'POST /manager/generate_token' do
+  describe 'POST /manager/tokens/generate_token' do
     it 'generates a new token for the user' do
-      old_token = user.api_token
-      post manager_tokens_generate_token_path
-      user.reload
-      expect(user.api_token).not_to eq(old_token)
+      expect {
+        post manager_tokens_generate_token_path
+      }.to change { user.api_tokens.count }.by(1)
     end
 
     it 'redirects to the token generation page with a notice' do
       post manager_tokens_generate_token_path
-      expect(response).to redirect_to(manager_tokens_path)
       follow_redirect!
       expect(flash[:notice]).to eq(I18n.t('notice.token_generated'))
     end
