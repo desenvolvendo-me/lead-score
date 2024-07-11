@@ -16,6 +16,7 @@
   </head>
 
   <body class="font-normal leading-normal text-slate-800 relative selection:bg-primary-500/40 bg-white dark:bg-slate-900 dark:text-slate-100 antialiased">
+    <%= turbo_include_tags %>
     <%= render "shared/flash" %>
     <% if content_for(:header).present? %>
       <%= yield :header %>

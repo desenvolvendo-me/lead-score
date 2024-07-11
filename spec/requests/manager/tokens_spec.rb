@@ -33,7 +33,7 @@ RSpec.describe 'Tokens', type: :request do
       post manager_tokens_generate_token_path
       expect(response).to redirect_to(manager_tokens_path)
       follow_redirect!
-      expect(flash[:notice]).to eq('Token gerado com sucesso.')
+      expect(flash[:notice]).to eq(I18n.t('notice.token_generated'))
     end
   end
 end

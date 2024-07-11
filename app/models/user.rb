@@ -36,6 +36,7 @@ class User < ApplicationRecord
   after_create :send_confirmation_instructions
 
   has_one :client, dependent: :destroy
+  has_many :api_tokens, dependent: :destroy
 
   has_person_name
   has_one_attached :avatar

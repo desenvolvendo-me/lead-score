@@ -17,6 +17,7 @@
 #
 class Client < ApplicationRecord
   belongs_to :user
+  has_many :api_tokens, dependent: :destroy
 
   def update_stripe_customer
     begin

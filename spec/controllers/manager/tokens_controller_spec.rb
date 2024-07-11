@@ -30,7 +30,7 @@ RSpec.describe Manager::TokensController, type: :controller do
     it 'redirects to the token generation page with a notice' do
       post :generate
       expect(response).to redirect_to(manager_tokens_path)
-      expect(flash[:notice]).to eq('Token gerado com sucesso.')
+      expect(flash[:notice]).to eq(I18n.t('notice.token_generated'))
     end
   end
 end
