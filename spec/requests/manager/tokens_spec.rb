@@ -35,5 +35,11 @@ RSpec.describe 'Tokens', type: :request do
       follow_redirect!
       expect(flash[:notice]).to eq(I18n.t('notice.token_generated'))
     end
+
+    it 'handles token generation failure gracefully' do
+      allow_any_instance_of(User).to receive(:api_tokens).and_raise(StandardError.new("Simulated failure"))
+      post manager_tokens_generate_token_path
+      expect(flash[:alert]).to eq(I18n.t('alert.token_generation_failed'))
+    end
   end
 end

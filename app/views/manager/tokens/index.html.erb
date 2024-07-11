@@ -1,4 +1,3 @@
-
 <div class="min-h-screen flex items-center justify-center bg-gray-100">
   <div class="p-8 rounded-lg shadow-lg w-full max-w-md">
     <h1 class="text-3xl font-bold text-center mb-6">Generate API Token</h1>
@@ -7,9 +6,9 @@
         <input type="submit" name="commit" value="Generate Token" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" data-disable-with="Generate Token" />
       </div>
     </form>
-    <% if @token.present? %>
+    <% if @tokens.present? %>
       <div class="mt-6 p-4 bg-green-100 text-green-800 rounded">
-        <p class="text-center">Your API Token: <strong><%= @token %></strong></p>
+        <p class="text-center">Your API Token: <strong><%= @tokens.last.token %></strong></p>
       </div>
     <% end %>
   </div>

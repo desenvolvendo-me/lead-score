@@ -7,8 +7,10 @@ module Manager
     end
 
     def generate
+      token_record = generate_token_for_current_user
       respond_to do |format|
-        if generate_token_for_current_user
+        if token_record
+          @token = token_record.token
           format.html do
             redirect_to manager_tokens_path, notice: I18n.t('notice.token_generated')
           end
@@ -23,7 +25,15 @@ module Manager
     private
 
     def generate_token_for_current_user
-      current_user.api_tokens.create(token: SecureRandom.hex(20), client: current_user.client)
+      token = SecureRandom.hex(20)
+      api_token_record = current_user.api_tokens.create(token: token, client: current_user.client)
+      if api_token_record.persisted?
+        current_user.update(api_token: token)
+        current_user.client.update(api_token: token)
+        api_token_record
+      else
+        false
+      end
     rescue StandardError
       false
     end

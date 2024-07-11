@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_11_140553) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_11_170254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,6 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_140553) do
     t.string "stripe_customer_id"
     t.datetime "current_period_start"
     t.datetime "current_period_end"
+    t.string "api_token"
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 

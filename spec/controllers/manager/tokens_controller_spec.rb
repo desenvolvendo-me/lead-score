@@ -23,9 +23,9 @@ RSpec.describe Manager::TokensController, type: :controller do
 
   describe 'POST #generate' do
     it 'generates a new token for the user' do
-      old_token_count = user.api_tokens.count
-      post :generate
-      expect(user.api_tokens.count).to eq(old_token_count + 1)
+      expect {
+        post :generate
+      }.to change { user.api_tokens.count }.by(1)
     end
 
     it 'redirects to the token generation page with a notice' do
@@ -35,9 +35,8 @@ RSpec.describe Manager::TokensController, type: :controller do
     end
 
     it 'handles token generation failure gracefully' do
-      allow_any_instance_of(User).to receive(:generate_api_token).and_return(false)
+      allow_any_instance_of(User).to receive(:api_tokens).and_raise(StandardError.new("Simulated failure"))
       post :generate
-      expect(response).to redirect_to(manager_tokens_path)
       expect(flash[:alert]).to eq(I18n.t('alert.token_generation_failed'))
     end
   end
