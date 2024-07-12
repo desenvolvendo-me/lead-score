@@ -93,4 +93,9 @@ if Rails.env.development?
   Task.create(name: 'Treinamento do modelo', description: 'Treinar um modelo de chatbot',
               status: "done", goal: goal15)
 
+
+  Score.create!(name: 'João', value: 100)
+  Score.create!(name: 'Alice', value: 80)
+  Score.create!(name: 'Maria', value: 95)
+
 end
