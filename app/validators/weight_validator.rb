@@ -1,4 +1,3 @@
-# app/validators/weight_validator.rb
 class WeightValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     if value.is_a?(Hash)
