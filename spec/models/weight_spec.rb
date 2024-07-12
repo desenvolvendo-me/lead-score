@@ -1,30 +1,45 @@
-
+# == Schema Information
+#
+# Table name: weights
+#
+#  id              :bigint           not null, primary key
+#  description     :string
+#  question_answer :jsonb            not null
+#  status          :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 require 'rails_helper'
+giy
+RSpec.describe Weight do
+  it "valid" do
+    weight = Weight.create(description: "Turma 21", status: "active", question_answer: { "pergunta1" => { "resposta1" => 10, "resposta2" => 5 }})
 
-RSpec.describe Weight, type: :model do
-  it 'can be created' do
-    weight_table = Weight.new(question_answer: { "What is your age?" => { "33" => 5, "55" => 1 }})
-    expect(weight_table).to be_a_new(Weight)
+    expect(weight.valid?).to be_truthy
   end
 
-  it 'can be saved' do
-    weight_table = Weight.new(question_answer: { "What is your age?" => { "33" => 5, "55" => 1 }})
-    expect(weight_table.save).to be_truthy
+  it "invalid" do
+    weight = Weight.create(description: "Turma 21", status: "active", question_answer: { "pergunta1" => { "resposta1" => 10, "resposta2" => "" } } )
+
+    expect(weight.valid?).to be_falsey
   end
 
-  it 'can be found' do
-    weight_table = Weight.create!(question_answer: { "What is your age?" => { "33" => 5, "55" => 1 }})
-    expect(Weight.find(weight_table.id)).to eq(weight_table)
+  it "invalid" do
+    weight = Weight.create(description: "Turma 21", status: "active", question_answer: { "" => { "resposta1" => 10, "resposta2" => 5 } } )
+
+    expect(weight.valid?).to be_falsey
   end
 
-  it 'can be updated' do
-    weight_table = Weight.create!(question_answer: { "What is your age?" => { "33" => 5, "55" => 1 }})
-    weight_table.update(question_answer: { "What is your age?" => { "33" => 2, "55" => 3 }})
-    expect(weight_table.question_answer).to eq({ "What is your age?" => { "33" => 2, "55" => 3 }})
+  it "invalid" do
+    weight = Weight.create(description: "Turma 21", status: "active", question_answer: { "pergunta1" => { "" => 10, "resposta2" => 5 } } )
+
+    expect(weight.valid?).to be_falsey
   end
 
-  it 'can be destroyed' do
-    weight_table = Weight.create!(question_answer: { "What is your age?" => { "33" => 5, "55" => 1 }})
-    expect { weight_table.destroy }.to change { Weight.count }.by(-1)
+  it "invalid" do
+    weight = Weight.create(description: "Turma 21", status: "active", question_answer: { "pergunta1" => { "resposta1" => "", "resposta2" => 5 } } )
+
+    expect(weight.valid?).to be_falsey
   end
+
 end
