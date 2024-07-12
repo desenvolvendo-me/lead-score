@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   resources :posts
 
+
   namespace :webhooks do
     post 'receive', to: 'webhooks#receive'
   end
+
 
 	get 'admin/integrations', to: 'page#integrations'
 	get 'admin/team', to: 'page#team'
@@ -70,6 +72,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :scores
     get '', to: 'home#index', as: :home
   end
 
@@ -89,5 +92,4 @@ Rails.application.routes.draw do
       patch :update_stripe_info
     end
   end
-
 end
