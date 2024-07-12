@@ -7,7 +7,7 @@ RSpec.describe 'Tokens', type: :request do
   let(:client) { create(:client, user: user) }
 
   before do
-    user.update(client: client) # Certifique-se de que o usuário tem um cliente associado
+    user.update(client: client) 
     sign_in user
   end
 
