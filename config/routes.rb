@@ -2,7 +2,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
 
   resources :posts
-
+  resources :weights
 
   namespace :webhooks do
     post 'receive', to: 'webhooks#receive'
