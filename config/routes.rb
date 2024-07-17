@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
 
   namespace :webhooks do
+    resources :lead_transmissions
     post 'receive', to: 'webhooks#receive'
   end
 

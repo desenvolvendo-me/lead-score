@@ -1,0 +1,51 @@
+module Webhooks
+  class LeadTransmissionsController < ApplicationController
+    before_action :set_lead_transmission, only: %i[show edit update destroy]
+
+    def index
+      @lead_transmissions = LeadTransmission.all
+    end
+
+    def show
+    end
+
+    def new
+      @lead_transmission = LeadTransmission.new
+    end
+
+    def create
+      @lead_transmission = LeadTransmission.new(lead_transmission_params)
+      if @lead_transmission.save
+        redirect_to webhooks_lead_transmissions_path, notice: 'Lead transmission was successfully created.'
+      else
+        render :new
+      end
+    end
+
+    def edit
+    end
+
+    def update
+      if @lead_transmission.update(lead_transmission_params)
+        redirect_to webhooks_lead_transmissions_path, notice: 'Lead transmission was successfully updated.'
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @lead_transmission.destroy
+      redirect_to webhooks_lead_transmissions_path, notice: 'Lead transmission was successfully destroyed.'
+    end
+
+    private
+
+    def lead_transmission_params
+      params.require(:lead_transmission).permit(:webhook_url, :min_score_threshold, :max_score_threshold)
+    end
+
+    def set_lead_transmission
+      @lead_transmission = LeadTransmission.find(params[:id])
+    end
+  end
+end
