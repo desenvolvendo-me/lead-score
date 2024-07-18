@@ -226,3 +226,6 @@ pt-BR:
         download_now: "Clique em 'Download' para receber seu certificado agora mesmo"
   notice:
     certificate_does_not_exist: "O certificado solicitado não existe."
+    token_generated: "Token gerado com sucesso."
+  alert:
+    token_generation_failed: "Falha ao gerar o token."
