@@ -1,29 +1,28 @@
-<article id="<%= dom_id(@weight) %>" class="py-6 prose dark:prose-invert">
+<article id="<%= dom_id weight %>" class="py-6 prose dark:prose-invert">
   <p class="mb-0 font-semibold">
     Description
   </p>
   <p class="my-0">
-    <%= @weight.description %>
+    <%= weight.description %>
   </p>
 
   <p class="mb-0 font-semibold">
     Status
   </p>
   <p class="my-0">
-    <%= @weight.status %>
+    <%= weight.status %>
   </p>
 
   <p class="mb-0 font-semibold">
-    Question Answer
+    Question_answer
   </p>
   <p class="my-0">
-    <%= @weight.question_answer %>
+    <%= weight.question_answer %>
   </p>
 
   <p>
-    <%= link_to "View Weight", @weight, class: "underline" %>
+    <%= link_to "View Weight", weight, class: "underline" %>
   </p>
 
-  <time class="text-slate-600 dark:text-slate-400 text-xs" datetime="<%= @weight.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(@weight.created_at) + " ago" %></time>
+  <time class="text-slate-600 dark:text-slate-400 text-xs" datetime="<%= weight.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(weight.created_at) + " ago" %></time>
 </article>
-e>

@@ -16,10 +16,9 @@
       </ol>
     </nav>
     <div class="flex items-center justify-between">
-      <h1 class="text-4xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex-1">weight #<%= @weight %>.id %></h1>
-      <%= link_to "Edit", edit_weight_path(@weight) %>, class: "btn btn-light" %>
+      <h1 class="text-4xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex-1">weight #<%= @weight.id %></h1>
+      <%= link_to "Edit", edit_weight_path(@weight), class: "btn btn-light" %>
     </div>
   </div>
   <%= render @weight %>
 </div>
-)
