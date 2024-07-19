@@ -1,5 +1,8 @@
 class WeightValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
+
+    value = JSON.parse(value) if value.is_a?(String) && value.present?
+
     if value.is_a?(Hash)
       value.each do |question, answers|
         if question.blank?
