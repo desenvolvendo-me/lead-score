@@ -18,6 +18,12 @@ class WeightsController < ApplicationController
   def create
     @weight = Weight.new(weight_params)
 
+    Rails.logger.debug("Received params: #{params[:weight][:question_answer]}")
+
+    if @weight.question_answer.is_a?(String)
+      @weight.question_answer = JSON.parse(@weight.question_answer)
+    end
+
     respond_to do |format|
       if @weight.save
         format.html { redirect_to @weight, notice: 'Weight was successfully created.' }
@@ -29,14 +35,15 @@ class WeightsController < ApplicationController
     end
   end
 
+
   def update
     respond_to do |format|
       if @weight.update(weight_params)
-        format.html { redirect_to @weight, notice: 'Weight was successfully updated.' }
+        format.html { redirect_to @weight, notice: 'Weight was successfully updated.'}
         format.json { render :show, status: :ok, location: @weight }
       else
         format.html { render :edit }
-        format.json { render json: @weight.errors, status: :unprocessable_entity }
+        format.json { render json: @weight.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -56,6 +63,7 @@ class WeightsController < ApplicationController
   end
 
   def weight_params
-    params.require(:weight).permit(:description, :status, :question_answer)
+    params.require(:weight).permit(:description, :status, question_answer: {})
   end
+
 end
