@@ -20,10 +20,6 @@ class WeightsController < ApplicationController
 
     Rails.logger.debug("Received params: #{params[:weight][:question_answer]}")
 
-    if @weight.question_answer.is_a?(String)
-      @weight.question_answer = JSON.parse(@weight.question_answer)
-    end
-
     respond_to do |format|
       if @weight.save
         format.html { redirect_to @weight, notice: 'Weight was successfully created.' }
@@ -63,7 +59,7 @@ class WeightsController < ApplicationController
   end
 
   def weight_params
-    params.require(:weight).permit(:description, :status, question_answer: {})
+    params.require(:weight).permit(:description, :status, :question_answer)
   end
 
 end
