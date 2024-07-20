@@ -92,6 +92,8 @@ pt-BR:
         one: 1 ano
         other: "%{count} anos"
     prompts:
+      created: Criado
+      ago: atrás
       second: Segundo
       minute: Minuto
       hour: Hora
@@ -101,6 +103,12 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      not_a_json: não é um JSON válido
+      not_a_hash: não é um hash
+      blank_key: contém uma chave em branco
+      not_a_hash_value: contém um valor não-hash para a pergunta
+      blank_answer_key: contém uma resposta com chave em branco
+      blank_answer_value: contém uma resposta com valor em branco
       accepted: deve ser aceito
       blank: não pode ficar em branco
       confirmation: não é igual a %{attribute}
@@ -122,6 +130,9 @@ pt-BR:
       present: deve ficar em branco
       required: é obrigatório(a)
       taken: já está em uso
+      description_blank: Descrição não pode ficar em branco
+      question_answer_blank: Pergunta e Resposta não pode ficar em branco
+      question_answer_not_hash: Pergunta e Resposta não é um hash
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'
@@ -131,11 +142,16 @@ pt-BR:
       wrong_length:
         one: não possui o tamanho esperado (1 caracter)
         other: não possui o tamanho esperado (%{count} caracteres)
+      weight:
+        invalid_format: "formato inválido para a resposta da pergunta"
+        blank_key: "chave em branco na resposta da pergunta"
+        blank_value: "valor em branco na resposta da pergunta"
     template:
       body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
       header:
         one: 'Não foi possível gravar %{model}: 1 erro'
         other: 'Não foi possível gravar %{model}: %{count} erros'
+
   helpers:
     select:
       prompt: Por favor selecione

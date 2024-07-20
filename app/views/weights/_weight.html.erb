@@ -24,5 +24,8 @@
     <%= link_to "View Weight", weight, class: "underline" %>
   </p>
 
-  <time class="text-slate-600 dark:text-slate-400 text-xs" datetime="<%= weight.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(weight.created_at) + " ago" %></time>
+  <time class="text-slate-600 dark:text-slate-400 text-xs" datetime="<%= weight.created_at.to_formatted_s(:long) %>">
+    <%= I18n.t('datetime.prompts.created') + ' ' + time_ago_in_words(weight.created_at) + ' ' + I18n.t('datetime.prompts.ago') %>
+  </time>
+
 </article>

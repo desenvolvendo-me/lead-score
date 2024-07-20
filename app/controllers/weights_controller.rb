@@ -22,15 +22,14 @@ class WeightsController < ApplicationController
 
     respond_to do |format|
       if @weight.save
-        format.html { redirect_to @weight, notice: 'Weight was successfully created.' }
+        format.html { redirect_to @weight, notice: 'Weight was successfully created.'}
         format.json { render :show, status: :created, location: @weight }
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @weight.errors, status: :unprocessable_entity }
       end
     end
   end
-
 
   def update
     respond_to do |format|
@@ -38,11 +37,12 @@ class WeightsController < ApplicationController
         format.html { redirect_to @weight, notice: 'Weight was successfully updated.'}
         format.json { render :show, status: :ok, location: @weight }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity}
         format.json { render json: @weight.errors, status: :unprocessable_entity}
       end
     end
   end
+
 
   def destroy
     @weight.destroy
