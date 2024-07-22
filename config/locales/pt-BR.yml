@@ -1,4 +1,15 @@
 pt-BR:
+  activerecord:
+    models:
+      weight: "Peso"
+    attributes:
+      weight:
+        description: "Descrição"
+        status: "Status"
+        question_answer: "Resposta e pergunta"
+
+  new_weight: "Novo Peso"
+  create_weight: "Criar Peso"
   date:
     abbr_day_names:
       - Dom
@@ -106,8 +117,10 @@ pt-BR:
       not_a_json: não é um JSON válido
       not_a_hash: não é um hash
       blank_key: contém uma chave em branco
-      not_a_hash_value: contém um valor não-hash para a pergunta
+      not_a_hash_question_value: contém um valor não-hash para a pergunta
+      not_a_hash_answer_value: contém um valor não-hash para a resposta
       blank_answer_key: contém uma resposta com chave em branco
+      blank_question_key: contém uma pergunta com chave em branco
       blank_answer_value: contém uma resposta com valor em branco
       accepted: deve ser aceito
       blank: não pode ficar em branco
@@ -242,3 +255,6 @@ pt-BR:
         download_now: "Clique em 'Download' para receber seu certificado agora mesmo"
   notice:
     certificate_does_not_exist: "O certificado solicitado não existe."
+    create: "%{model} foi criado com sucesso."
+    update: "%{model} foi atualizado com sucesso."
+    destroy: "%{model} foi removido com sucesso."
