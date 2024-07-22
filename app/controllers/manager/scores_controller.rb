@@ -3,9 +3,8 @@ module Manager
     belongs_to :user
 
     def index
-      @scores = Score.all
-
+      @q = Score.ransack(params[:q])
+      @scores = @q.result
     end
   end
 end
-

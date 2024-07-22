@@ -258,3 +258,6 @@ pt-BR:
     create: "%{model} foi criado com sucesso."
     update: "%{model} foi atualizado com sucesso."
     destroy: "%{model} foi removido com sucesso."
+    token_generated: "Token gerado com sucesso."
+  alert:
+    token_generation_failed: "Falha ao gerar o token."
