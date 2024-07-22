@@ -1,4 +1,7 @@
-
+<div class="mb-4">
+  <%= link_to 'Ordenar por Score Ascendente', manager_scores_path(order: 'asc'), class: 'mr-2' %>
+  <%= link_to 'Ordenar por Score Descendente', manager_scores_path(order: 'desc') %>
+</div>
 
 <ul class="divide-y divide-slate-300/80 dark:divide-slate-600">
   <% @scores.each do |score| %>

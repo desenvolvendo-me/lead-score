@@ -3,9 +3,14 @@ module Manager
     belongs_to :user
 
     def index
-      @scores = Score.all
-
+      @order = params[:order]
+      @scores = if @order == 'asc'
+                  Score.order(value: :asc)
+                elsif @order == 'desc'
+                  Score.order(value: :desc)
+                else
+                  Score.all
+                end
     end
   end
 end
-
