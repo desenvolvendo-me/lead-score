@@ -21,6 +21,7 @@
     <div class="flex items-center space-x-4">
       <%= link_to 'Edit', edit_webhooks_lead_transmission_path(@lead_transmission), class: "text-yellow-500 hover:underline" %>
       <%= link_to 'Back', webhooks_lead_transmissions_path, class: "text-blue-500 hover:underline" %>
+      <%= button_to 'Delete', webhooks_lead_transmission_path(@lead_transmission), method: :delete, data: { confirm: 'Confirm Delete?' }, class: 'text-red-500 hover:underline' %>
     </div>
   </div>
 </div>

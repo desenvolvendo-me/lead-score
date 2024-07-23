@@ -1,4 +1,5 @@
-<%= form_with model: @lead_transmission, url: polymorphic_path([:webhooks, @lead_transmission]), class: "space-y-6" do |form| %>  <% if @lead_transmission.errors.any? %>
+<%= form_with model: @lead_transmission, url: polymorphic_path([:webhooks, @lead_transmission]), class: "space-y-6" do |form| %>
+  <% if @lead_transmission.errors.any? %>
     <div id="error_explanation" class="text-red-600">
       <h2 class="text-xl font-semibold"><%= pluralize(@lead_transmission.errors.count, "error") %> prohibited this lead transmission from being saved:</h2>
       <ul class="mt-2">
@@ -27,7 +28,14 @@
   </div>
 
   <div class="flex items-center justify-end space-x-4">
-    <%= link_to 'Cancel', webhooks_lead_transmissions_path, class: "text-sm font-medium text-slate-700 dark:text-slate-200 hover:underline" %>
-    <%= form.submit 'Save Lead Transmission', class: "flex items-center justify-center text-white bg-blue-700 hover:bg-blue-300 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800" %>
+    <%= form.submit(@lead_transmission.persisted? ? 'Update Lead Transmission' : 'Create Lead Transmission', class: "flex items-center justify-center text-white bg-blue-700 hover:bg-blue-300 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800") %>
+    <%= link_to 'Back', webhooks_lead_transmissions_path, class: "text-sm font-medium text-slate-700 dark:text-slate-200 hover:underline" %>
+    <% if @lead_transmission.persisted? %>
+      <%= button_to 'Delete', webhooks_lead_transmission_path(@lead_transmission),
+                    data: { turbo_method: :delete, turbo_confirm: 'Confirm Delete?' },
+                    method: :delete,
+                    class: 'text-red-500 hover:underline' %>
+    <% end %>
   </div>
+
 <% end %>
