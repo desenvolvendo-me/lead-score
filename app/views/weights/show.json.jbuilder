@@ -1,1 +1,0 @@
-json.partial! "weights/weight", post: @weight
