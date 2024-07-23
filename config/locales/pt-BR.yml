@@ -7,9 +7,10 @@ pt-BR:
         description: "Descrição"
         status: "Status"
         question_answer: "Resposta e pergunta"
-
   new_weight: "Novo Peso"
   create_weight: "Criar Peso"
+  actions:
+    cancel: "Cancelar"
   date:
     abbr_day_names:
       - Dom
@@ -20,7 +21,6 @@ pt-BR:
       - Sex
       - Sáb
     abbr_month_names:
-      -
       - Jan
       - Fev
       - Mar
@@ -111,6 +111,11 @@ pt-BR:
       day: Dia
       month: Mês
       year: Ano
+  enums:
+    weight:
+      status:
+        active: "Ativo"
+        inactive: "Inativo"
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -167,6 +172,8 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+      create_weight: "Criar Peso"
+      update_weight: "Atualizar Peso"
   number:
     currency:
       format:
