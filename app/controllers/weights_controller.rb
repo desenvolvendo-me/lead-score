@@ -17,9 +17,6 @@ class WeightsController < ApplicationController
 
   def create
     @weight = Weight.new(weight_params)
-
-    Rails.logger.debug("Received params: #{params[:weight][:question_answer]}")
-
     respond_to do |format|
       if @weight.save
         format.html { redirect_to @weight, notice: 'Weight was successfully created.'}
