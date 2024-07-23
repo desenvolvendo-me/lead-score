@@ -155,16 +155,11 @@ pt-BR:
       wrong_length:
         one: não possui o tamanho esperado (1 caracter)
         other: não possui o tamanho esperado (%{count} caracteres)
-      weight:
-        invalid_format: "formato inválido para a resposta da pergunta"
-        blank_key: "chave em branco na resposta da pergunta"
-        blank_value: "valor em branco na resposta da pergunta"
     template:
       body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
       header:
         one: 'Não foi possível gravar %{model}: 1 erro'
         other: 'Não foi possível gravar %{model}: %{count} erros'
-
   helpers:
     select:
       prompt: Por favor selecione
@@ -258,3 +253,6 @@ pt-BR:
     create: "%{model} foi criado com sucesso."
     update: "%{model} foi atualizado com sucesso."
     destroy: "%{model} foi removido com sucesso."
+    token_generated: "Token gerado com sucesso."
+  alert:
+    token_generation_failed: "Falha ao gerar o token."
