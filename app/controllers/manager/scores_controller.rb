@@ -20,7 +20,7 @@ module Manager
         end
       end
 
-      send_data csv_data, filename: "scores-#{Date.today}.csv", type: 'text/csv'
+      send_data csv_data, filename: "scores-#{Date.today}.csv", type: 'text/html; charset=utf-8'
     end
   end
 end
