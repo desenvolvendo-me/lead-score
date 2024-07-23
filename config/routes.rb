@@ -78,9 +78,14 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :scores
-    get '', to: 'home#index', as: :home
+    resources :scores do
+    collection do
+      get :export
+    end
   end
+
+  get '', to: 'home#index', as: :home
+end
 
   scope module: :external do
     get '', to: 'home#index', as: :home
