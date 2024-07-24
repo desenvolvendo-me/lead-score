@@ -19,7 +19,7 @@ class WeightsController < ApplicationController
     @weight = Weight.new(weight_params)
     respond_to do |format|
       if @weight.save
-        format.html { redirect_to @weight, notice: 'Weight was successfully created.'}
+        format.html { redirect_to @weight, notice: I18n.t('notice.create', model:'Weight')}
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -29,7 +29,7 @@ class WeightsController < ApplicationController
   def update
     respond_to do |format|
       if @weight.update(weight_params)
-        format.html { redirect_to @weight, notice: 'Weight was successfully updated.'}
+        format.html { redirect_to @weight, notice: I18n.t('notice.update', model:'Weight')}
       else
         format.html { render :edit, status: :unprocessable_entity}
       end
@@ -39,7 +39,7 @@ class WeightsController < ApplicationController
   def destroy
     @weight.destroy
     respond_to do |format|
-      format.html { redirect_to weights_url, notice: 'Weight was successfully destroyed.' }
+      format.html { redirect_to weights_url, notice: I18n.t('notice.destroy', model:'Weight')}
     end
   end
 
