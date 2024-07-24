@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_08_224524) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_11_170254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,6 +78,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_08_224524) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "api_tokens", force: :cascade do |t|
+    t.string "token", null: false
+    t.bigint "user_id", null: false
+    t.bigint "client_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_api_tokens_on_client_id"
+    t.index ["token"], name: "index_api_tokens_on_token", unique: true
+    t.index ["user_id"], name: "index_api_tokens_on_user_id"
+  end
+    
   create_table "answers", force: :cascade do |t|
     t.jsonb "question_answer"
     t.datetime "created_at", null: false
@@ -92,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_08_224524) do
     t.string "stripe_customer_id"
     t.datetime "current_period_start"
     t.datetime "current_period_end"
+    t.string "api_token"
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
@@ -151,6 +163,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_08_224524) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "api_token"
+    t.index ["api_token"], name: "index_users_on_api_token", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -159,11 +173,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_08_224524) do
   create_table "weights", force: :cascade do |t|
     t.string "description"
     t.string "status"
-    t.jsonb "question_answer", null: false
+    t.jsonb "question_answer", default: "{}", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "api_tokens", "clients"
+  add_foreign_key "api_tokens", "users"
 end

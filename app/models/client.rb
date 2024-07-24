@@ -3,6 +3,7 @@
 # Table name: clients
 #
 #  id                   :bigint           not null, primary key
+#  api_token            :string
 #  current_period_end   :datetime
 #  current_period_start :datetime
 #  document             :string
