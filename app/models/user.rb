@@ -36,6 +36,7 @@ class User < ApplicationRecord
   after_create :send_confirmation_instructions
 
   has_one :client, dependent: :destroy
+  has_many :api_tokens, dependent: :destroy
 
   has_person_name
   has_one_attached :avatar
@@ -60,5 +61,10 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}".strip
+  end
+
+  def generate_api_token
+    self.api_token = SecureRandom.hex(20)
+    save
   end
 end
