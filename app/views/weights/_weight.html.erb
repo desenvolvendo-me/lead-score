@@ -1,27 +1,27 @@
 <article id="<%= dom_id weight %>" class="py-6 prose dark:prose-invert">
   <p class="mb-0 font-semibold">
-    Description
+    <%= t 'views.weights._weight.description' %>
   </p>
   <p class="my-0">
     <%= weight.description %>
   </p>
 
   <p class="mb-0 font-semibold">
-    Status
+    <%= t 'views.weights._weight.status' %>
   </p>
   <p class="my-0">
     <%= weight.status %>
   </p>
 
   <p class="mb-0 font-semibold">
-    Question_answer
+    <%= t 'views.weights._weight.question_answer' %>
   </p>
   <p class="my-0">
     <%= weight.question_answer %>
   </p>
 
   <p>
-    <%= link_to "View Weight", weight, class: "underline" %>
+    <%= link_to t('views.weights._weight.link_text'), weight, class: "underline" %>
   </p>
 
   <time class="text-slate-600 dark:text-slate-400 text-xs" datetime="<%= weight.created_at.to_formatted_s(:long) %>">

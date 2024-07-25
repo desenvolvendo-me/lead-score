@@ -7,7 +7,6 @@ pt-BR:
         description: "Descrição"
         status: "Status"
         question_answer: "Resposta e pergunta"
-  new_weight: "Novo Peso"
   create_weight: "Criar Peso"
   actions:
     cancel: "Cancelar"
@@ -255,6 +254,25 @@ pt-BR:
         your_phone: "Seu telefone"
       certificate:
         download_now: "Clique em 'Download' para receber seu certificado agora mesmo"
+    weights:
+      weights: 'Pesos'
+      buttons:
+        delete: 'Excluir'
+      index:
+        link_text: 'Novo Peso'
+        h1_title: 'Pesos'
+      new: 'Novo Peso'
+      _weight:
+        description: 'Descrição'
+        status: 'Status'
+        question_answer: 'Pergunta e Resposta'
+        link_text: "Visualizar Pesos"
+      edit:
+        link_text: 'Pesos'
+        page_title: 'Editar'
+        edit_button: 'Editar Peso'
+        h1_title: 'Editar Peso'
+
   notice:
     certificate_does_not_exist: "O certificado solicitado não existe."
     create: "%{model} foi criado com sucesso."
@@ -263,3 +281,7 @@ pt-BR:
     token_generated: "Token gerado com sucesso."
   alert:
     token_generation_failed: "Falha ao gerar o token."
+
+
+
+
