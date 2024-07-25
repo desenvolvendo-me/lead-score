@@ -1,28 +1,38 @@
 # == Schema Information
 #
-# Table name: api_tokens
+# Table name: clients
 #
-#  id         :bigint           not null, primary key
-#  token      :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  client_id  :bigint           not null
-#  user_id    :bigint           not null
+#  id                   :bigint           not null, primary key
+#  api_token            :string
+#  current_period_end   :datetime
+#  current_period_start :datetime
+#  document             :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  stripe_customer_id   :string
+#  user_id              :bigint
 #
 # Indexes
 #
-#  index_api_tokens_on_client_id  (client_id)
-#  index_api_tokens_on_token      (token) UNIQUE
-#  index_api_tokens_on_user_id    (user_id)
+#  index_clients_on_user_id  (user_id)
 #
-# Foreign Keys
-#
-#  fk_rails_...  (client_id => clients.id)
-#  fk_rails_...  (user_id => users.id)
-#
-class ApiToken < ApplicationRecord
+class Client < ApplicationRecord
   belongs_to :user
-  belongs_to :client
+  has_many :api_tokens, dependent: :destroy
 
-  validates :token, presence: true, uniqueness: true
+  def update_stripe_customer
+    begin
+      customer_name = [user.first_name, user.last_name].compact.join(' ').strip
+      if stripe_customer_id.blank?
+        customer = Stripe::Customer.create(email: user.email, name: customer_name)
+        update(stripe_customer_id: customer.id)
+      else
+        customer = Stripe::Customer.update(stripe_customer_id, email: user.email, name: customer_name)
+      end
+    rescue Stripe::StripeError => e
+      Rails.logger.error "Stripe error: #{e.message}"
+      nil
+    end
+    customer
+  end
 end
