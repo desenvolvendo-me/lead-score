@@ -25,6 +25,11 @@
       <%= form.label :max_score_threshold, class: "block text-sm font-medium text-slate-700 dark:text-slate-200" %>
       <%= form.number_field :max_score_threshold, class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600" %>
     </div>
+
+    <div class="field">
+      <%= form.label :active %>
+      <%= form.check_box :active %>
+    </div>
   </div>
 
   <div class="flex items-center justify-end space-x-4">

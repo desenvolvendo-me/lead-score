@@ -42,7 +42,7 @@ module Webhooks
     private
 
     def lead_transmission_params
-      params.require(:lead_transmission).permit(:webhook_url, :min_score_threshold, :max_score_threshold)
+      params.require(:lead_transmission).permit(:webhook_url, :min_score_threshold, :max_score_threshold, :active)
     end
 
     def set_lead_transmission

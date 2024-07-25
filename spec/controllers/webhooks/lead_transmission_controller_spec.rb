@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Webhooks::LeadTransmissionsController, type: :controller do
-  let(:user) { create(:user) }  # Supondo que você tenha um factory para user
-  let(:valid_attributes) { { webhook_url: 'http://example.com', min_score_threshold: 10, max_score_threshold: 100 } }
-  let(:invalid_attributes) { { webhook_url: '', min_score_threshold: nil, max_score_threshold: nil } }
+  let(:user) { create(:user) }
+  let(:valid_attributes) { { webhook_url: 'http://example.com', min_score_threshold: 10, max_score_threshold: 100, active: true } }
+  let(:invalid_attributes) { { webhook_url: '', min_score_threshold: nil, max_score_threshold: nil, active: false } }
   let(:lead_transmission) { create(:lead_transmission) }
 
   before do
@@ -62,7 +62,7 @@ RSpec.describe Webhooks::LeadTransmissionsController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) { { webhook_url: 'http://newexample.com', min_score_threshold: 20, max_score_threshold: 90 } }
+      let(:new_attributes) { { webhook_url: 'http://newexample.com', min_score_threshold: 20, max_score_threshold: 90, active: true } }
 
       it 'updates the requested lead transmission' do
         put :update, params: { id: lead_transmission.to_param, lead_transmission: new_attributes }

@@ -21,6 +21,14 @@
   </div>
   <div class="sm:col-span-2 col-span-1">
     <div class="flex flex-col items-start space-y-1">
+      <p class="text-sm text-slate-500">Active</p>
+      <p>
+        <%= lead_transmission.active ? "Yes" : "No" %>
+      </p>
+    </div>
+  </div>
+  <div class="sm:col-span-2 col-span-1">
+    <div class="flex flex-col items-start space-y-1">
       <p class="text-sm text-slate-500">Actions</p>
       <div class="flex space-x-2">
         <%= link_to 'Show', webhooks_lead_transmission_path(lead_transmission), class: "text-blue-500 hover:underline" %>

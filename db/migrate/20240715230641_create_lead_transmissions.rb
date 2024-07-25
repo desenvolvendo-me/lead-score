@@ -4,6 +4,7 @@ class CreateLeadTransmissions < ActiveRecord::Migration[7.0]
       t.string :webhook_url
       t.integer :min_score_threshold
       t.integer :max_score_threshold
+      t.boolean :active
 
       t.timestamps
     end

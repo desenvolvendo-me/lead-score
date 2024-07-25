@@ -3,6 +3,7 @@
 # Table name: lead_transmissions
 #
 #  id                  :bigint           not null, primary key
+#  active              :boolean
 #  max_score_threshold :integer
 #  min_score_threshold :integer
 #  webhook_url         :string
@@ -11,8 +12,9 @@
 #
 FactoryBot.define do
   factory :lead_transmission do
-    webhook_url { "MyString" }
-    min_score_threshold { 1 }
-    max_score_threshold { 1 }
+    webhook_url { "www.mywebhook.com" }
+    min_score_threshold { 55 }
+    max_score_threshold { 70 }
+    active { true }
   end
 end

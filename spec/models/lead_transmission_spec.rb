@@ -3,6 +3,7 @@
 # Table name: lead_transmissions
 #
 #  id                  :bigint           not null, primary key
+#  active              :boolean
 #  max_score_threshold :integer
 #  min_score_threshold :integer
 #  webhook_url         :string
@@ -16,8 +17,9 @@ RSpec.describe LeadTransmission, type: :model do
     it 'is valid with valid attributes' do
       lead_transmission = LeadTransmission.new(
         webhook_url: 'https://example.com/webhook',
-        min_score_threshold: 10,
-        max_score_threshold: 100
+        min_score_threshold: 90,
+        max_score_threshold: 100,
+        active: true
       )
       expect(lead_transmission).to be_valid
     end

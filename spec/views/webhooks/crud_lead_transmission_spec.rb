@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'LeadTransmissions', type: :feature do
-  let(:user) { create(:user) }  # Supondo que você tenha um factory para user
+  let(:user) { create(:user) }
   let(:lead_transmission) { create(:lead_transmission) }
 
   before do
@@ -24,6 +24,7 @@ RSpec.feature 'LeadTransmissions', type: :feature do
     fill_in 'Webhook url', with: 'http://example.com'
     fill_in 'Min score threshold', with: 10
     fill_in 'Max score threshold', with: 100
+    check 'Active'
 
     expect(page).to have_button('Create Lead Transmission')
     click_button 'Create Lead Transmission'

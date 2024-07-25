@@ -3,6 +3,7 @@
 # Table name: lead_transmissions
 #
 #  id                  :bigint           not null, primary key
+#  active              :boolean
 #  max_score_threshold :integer
 #  min_score_threshold :integer
 #  webhook_url         :string
