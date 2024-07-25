@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'csv'
 
 RSpec.describe Manager::ScoresController, type: :controller do
-  let!(:user) { create(:user) } # Crie um usuário de teste
+  let!(:user) { create(:user) }
   let!(:score1) { Score.create(name: 'Score 1', value: 10) }
   let!(:score2) { Score.create(name: 'Score 2', value: 20) }
 
