@@ -1,7 +1,9 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
 
+
   resources :posts
+  resources :lead_histories
 
 
   namespace :webhooks do
