@@ -10,5 +10,5 @@
 #  updated_at  :datetime         not null
 #
 class LeadHistory < ApplicationRecord
-  belongs_to :lead
+  validates :lead, :sent_at, :destination, presence: true
 end
