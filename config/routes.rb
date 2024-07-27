@@ -79,10 +79,10 @@ Rails.application.routes.draw do
     end
 
     resources :scores do
-    collection do
-      get :export
+      collection do
+        get :export
+      end
     end
-  end
 
   get '', to: 'home#index', as: :home
 end
