@@ -143,6 +143,11 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+    label:
+      score:
+        s: "Ordenar por Score"
+      submit:
+        ordenar: "Ordenar"
   number:
     currency:
       format:
@@ -229,3 +234,6 @@ pt-BR:
     token_generated: "Token gerado com sucesso."
   alert:
     token_generation_failed: "Falha ao gerar o token."
+
+  actions:
+    exportar_csv: "Exportar CSV"
