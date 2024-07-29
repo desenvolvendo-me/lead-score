@@ -14,7 +14,7 @@ RSpec.describe Manager::ScoresController, type: :controller do
     it 'sends the CSV file with the correct content type and header' do
       get :export, params: { q: { s: 'value asc' } }
 
-      expect(response.content_type).to eq('text/html; charset=utf-8')
+      expect(response.content_type).to eq('text/csv; charset=utf-8')
       expect(response.headers['Content-Disposition']).to include('attachment; filename="scores-')
     end
   end
