@@ -13,6 +13,11 @@ FactoryBot.define do
   factory :weight do
     description { "Turma 21" }
     status { "active" }
-    question_answer { { "pergunta1" => { "resposta1" => 10, "resposta2" => 5 } } }
+    question_answer do
+      {
+        "Você já comprou algum curso de Programação?" => { "Sim" => 5, "Não" => 1 },
+        "Você está em transição de carreira?" => { "Sim" => 4, "Não" => 2 }
+      }
+    end
   end
 end

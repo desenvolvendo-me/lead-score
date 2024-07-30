@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Manager::ScoresController, type: :controller do
   let(:user) { create(:user) }
-  let!(:scores) { create_list(:score, 5) }
 
   before do
     sign_in user
@@ -11,7 +10,7 @@ RSpec.describe Manager::ScoresController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns @scores' do
-      expect(assigns(:scores)).to match_array(scores)
+      expect(assigns(:scores)).to eq(Score.all)
     end
 
     it 'assigns @scores to not be nil' do

@@ -1,4 +1,15 @@
 pt-BR:
+  activerecord:
+    models:
+      weight: "Peso"
+    attributes:
+      weight:
+        description: "Descrição"
+        status: "Status"
+        question_answer: "Resposta e pergunta"
+  create_weight: "Criar Peso"
+  actions:
+    cancel: "Cancelar"
   date:
     abbr_day_names:
       - Dom
@@ -9,7 +20,6 @@ pt-BR:
       - Sex
       - Sáb
     abbr_month_names:
-      -
       - Jan
       - Fev
       - Mar
@@ -92,15 +102,30 @@ pt-BR:
         one: 1 ano
         other: "%{count} anos"
     prompts:
+      created: Criado
+      ago: atrás
       second: Segundo
       minute: Minuto
       hour: Hora
       day: Dia
       month: Mês
       year: Ano
+  enums:
+    weight:
+      status:
+        active: "Ativo"
+        inactive: "Inativo"
   errors:
     format: "%{attribute} %{message}"
     messages:
+      not_a_json: não é um JSON válido
+      not_a_hash: não é um hash
+      blank_key: contém uma chave em branco
+      not_a_hash_question_value: contém um valor não-hash para a pergunta
+      not_a_hash_answer_value: contém um valor não-hash para a resposta
+      blank_answer_key: contém uma resposta com chave em branco
+      blank_question_key: contém uma pergunta com chave em branco
+      blank_answer_value: contém uma resposta com valor em branco
       accepted: deve ser aceito
       blank: não pode ficar em branco
       confirmation: não é igual a %{attribute}
@@ -122,6 +147,9 @@ pt-BR:
       present: deve ficar em branco
       required: é obrigatório(a)
       taken: já está em uso
+      description_blank: Descrição não pode ficar em branco
+      question_answer_blank: Pergunta e Resposta não pode ficar em branco
+      question_answer_not_hash: Pergunta e Resposta não é um hash
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'
@@ -143,6 +171,8 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+      create_weight: "Criar Peso"
+      update_weight: "Atualizar Peso"
   number:
     currency:
       format:
@@ -224,8 +254,34 @@ pt-BR:
         your_phone: "Seu telefone"
       certificate:
         download_now: "Clique em 'Download' para receber seu certificado agora mesmo"
+    weights:
+      weights: 'Pesos'
+      buttons:
+        delete: 'Excluir'
+      index:
+        link_text: 'Novo Peso'
+        h1_title: 'Pesos'
+      new: 'Novo Peso'
+      _weight:
+        description: 'Descrição'
+        status: 'Status'
+        question_answer: 'Pergunta e Resposta'
+        link_text: "Visualizar Pesos"
+      edit:
+        link_text: 'Pesos'
+        page_title: 'Editar'
+        edit_button: 'Editar Peso'
+        h1_title: 'Editar Peso'
+
   notice:
     certificate_does_not_exist: "O certificado solicitado não existe."
+    create: "%{model} foi criado com sucesso."
+    update: "%{model} foi atualizado com sucesso."
+    destroy: "%{model} foi removido com sucesso."
     token_generated: "Token gerado com sucesso."
   alert:
     token_generation_failed: "Falha ao gerar o token."
+
+
+
+

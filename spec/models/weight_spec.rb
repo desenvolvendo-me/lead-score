@@ -10,7 +10,7 @@
 #  updated_at      :datetime         not null
 #
 require 'rails_helper'
-giy
+
 RSpec.describe Weight do
   it "valid" do
     weight = Weight.create(description: "Turma 21", status: "active", question_answer: { "pergunta1" => { "resposta1" => 10, "resposta2" => 5 }})

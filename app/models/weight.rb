@@ -10,5 +10,7 @@
 #  updated_at      :datetime         not null
 #
 class Weight < ApplicationRecord
-  validates :question_answer, weight: true
+  validates :description, presence: true
+  validates :question_answer, presence: true, weight: true
+  enum status: { active: 'active', inactive: 'inactive' }
 end
