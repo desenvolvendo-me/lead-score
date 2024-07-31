@@ -8,19 +8,19 @@ RSpec.describe WebhookValidator, type: :lib do
     let(:invalid_url) { 'http://example.com/invalid' }
 
 
-    context 'quando a URL é real e válida' do
+    context 'when the URL is valid' do
       it 'retorna true' do
         expect(WebhookValidator.valid?(real_url)).to be true
       end
     end
 
-    context 'quando a URL é inválida ou retorna uma resposta não-200' do
+    context 'when the URL is invalid or returns a non-200 response' do
       it 'retorna false' do
         expect(WebhookValidator.valid?(invalid_url)).to be false
       end
     end
 
-    context 'quando uma exceção é levantada' do
+    context 'when an exception is raised' do
       before do
         allow(Net::HTTP).to receive(:start).with(URI.parse(real_url).hostname, URI.parse(real_url).port, use_ssl: URI.parse(real_url).scheme == 'https')
                                            .and_raise(StandardError.new('Simulated error'))
