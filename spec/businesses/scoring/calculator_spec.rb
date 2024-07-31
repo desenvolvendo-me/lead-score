@@ -34,7 +34,7 @@ RSpec.describe Scoring::Calculator do
       json_answers = lead_answers["answers"]
       json_weights = weight_instance.question_answer
 
-      total_score = Score::Calculator.calculate_score(json_answers, json_weights)
+      total_score = Scoring::Calculator.calculate_score(json_answers, json_weights)
 
 
       expected_score = 5 + 2
