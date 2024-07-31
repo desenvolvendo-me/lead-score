@@ -26,7 +26,7 @@ RSpec.describe WebhookValidator, type: :lib do
                                            .and_raise(StandardError.new('Simulated error'))
       end
 
-      it 'retorna false' do
+      it 'return false' do
         expect(WebhookValidator.valid?(real_url)).to be false
       end
     end
