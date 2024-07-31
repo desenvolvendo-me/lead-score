@@ -1,7 +1,6 @@
-# spec/models/score/calculator_spec.rb
 require 'rails_helper'
 
-RSpec.describe Score::Calculator do
+RSpec.describe Scoring::Calculator do
   describe '.calculate_score' do
     let(:answer_instance) { create(:answer) }
     let(:weight_instance) { create(:weight) }
@@ -11,14 +10,14 @@ RSpec.describe Score::Calculator do
       json_answers = lead_answers["answers"]
       json_weights = weight_instance.question_answer
 
-      total_score = Score::Calculator.calculate_score(json_answers, json_weights)
+      total_score = Scoring::Calculator.calculate_score(json_answers, json_weights)
 
-      expected_score = 5 + 4 # Valor esperado baseado nos pesos fornecidos
+      expected_score = 5 + 4
       expect(total_score).to eq(expected_score)
     end
 
     it 'calculates the total score correctly with different JSON data' do
-      # Alterando o JSON do answer_instance para outro cenário
+
       answer_instance.update(question_answer: {
         lead: {
           name: "Alice",
@@ -35,10 +34,10 @@ RSpec.describe Score::Calculator do
       json_answers = lead_answers["answers"]
       json_weights = weight_instance.question_answer
 
-      total_score = Score::Calculator.calculate_score(json_answers, json_weights)
+      total_score = Scoring::Calculator.calculate_score(json_answers, json_weights)
 
-      # Calculando o score esperado com base nos novos valores do JSON
-      expected_score = 5 + 2 # Supondo os pesos modificados no JSON de weight_table_instance
+
+      expected_score = 5 + 2
       expect(total_score).to eq(expected_score)
     end
   end

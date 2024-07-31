@@ -2,7 +2,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
 
   resources :posts
-
+  resources :weights
 
   namespace :webhooks do
     resources :lead_transmissions
@@ -79,9 +79,15 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :scores
-    get '', to: 'home#index', as: :home
-  end
+    resources :scores do
+      collection do
+        get :export
+      end
+    end
+
+  get '', to: 'home#index', as: :home
+end
+
 
   scope module: :external do
     get '', to: 'home#index', as: :home

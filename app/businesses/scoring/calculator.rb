@@ -1,4 +1,4 @@
-module Score
+module Scoring
   class Calculator
     def self.calculate_score(json_answers, json_weights)
       total_score = 0

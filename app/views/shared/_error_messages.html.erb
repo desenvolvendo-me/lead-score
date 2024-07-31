@@ -5,8 +5,8 @@
     <div class="flex-1">
       <p class="font-bold"><%= pluralize(resource.errors.count, "error") %> prohibited this post from being saved:</p>
       <ul class="list-disc mt-3 ml-4">
-        <% resource.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% resource.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>

@@ -31,7 +31,7 @@ class Client < ApplicationRecord
       end
     rescue Stripe::StripeError => e
       Rails.logger.error "Stripe error: #{e.message}"
-      nil 
+      nil
     end
     customer
   end
