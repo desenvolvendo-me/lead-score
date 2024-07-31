@@ -4,12 +4,16 @@
       <%= f.label :s, 'Ordenar por Score' %>
       <%= f.select :s,
                    [['Valor crescente', 'value asc'], ['Valor decrescente', 'value desc']],
-                   { selected: params.dig(:q, :s) || 'value asc' },
+                   { selected: params.dig(:s) || 'value asc' },
                    class: 'form-select'
       %>
       <%= f.submit 'Ordenar', class: 'btn btn-primary' %>
     </div>
   <% end %>
+</div>
+
+<div class="mb-4">
+  <%= link_to 'Exportar CSV', export_manager_scores_path(s: params[:s]), class: 'btn btn-secondary' %>
 </div>
 
 <ul class="divide-y divide-slate-300/80 dark:divide-slate-600">
@@ -21,13 +25,13 @@
         <label class="ml-2" for="score_<%= score.id %>"></label>
 
         <div class="flex flex-col items-start space-y-1">
-          <p class="text-slate-500 text-sm">Name</p>
+          <p class="text-slate-500 text-sm">Nome</p>
           <p class="sm:font-medium text-slate-900 sm:text-base text-lg font-semibold dark:text-slate-200"><%= score.name %></p>
         </div>
       </div>
       <div class="sm:col-span-2 col-span-1">
         <div class="flex flex-col items-start space-y-1">
-          <p class="text-sm text-slate-500">Score</p>
+          <p class="text-sm text-slate-500">Valor</p>
           <p><%= score.value %></p>
         </div>
       </div>
