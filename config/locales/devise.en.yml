@@ -63,3 +63,13 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+      not_a_json: "is not a JSON"
+      not_a_hash: "is not a hash"
+      blank_key: "is a blank key"
+      not_a_hash_question_value: "is not a hash value question"
+      not_a_hash_answer_value: "is not a hash value question"
+      blank_answer_key: "is a blank key answer"
+      blank_question_key: "is a blank key question"
+      blank_answer_value: "is a blank answer value"
+    new_weight: "New Weight"
+    create_weight: "Create Weight"

@@ -2,7 +2,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
 
   resources :posts
-
+  resources :weights
 
   namespace :webhooks do
     post 'receive', to: 'webhooks#receive'
@@ -86,6 +86,7 @@ Rails.application.routes.draw do
 
   get '', to: 'home#index', as: :home
 end
+
 
   scope module: :external do
     get '', to: 'home#index', as: :home
