@@ -1,2 +1,39 @@
-<h1>LeadHistories#index</h1>
-<p>Find me in app/views/lead_histories/index.html.erb</p>
+<!-- app/views/lead_histories/index.html.erb -->
+<h1>Histórico de Envios de Leads</h1>
+
+<%= form_with url: lead_histories_path, method: :get, local: true do %>
+  <div>
+    <%= label_tag :search, 'Pesquisar por nome do lead:' %>
+    <%= text_field_tag :search, params[:search] %>
+  </div>
+  <div>
+    <%= label_tag :start_date, 'Data de Início:' %>
+    <%= date_field_tag :start_date, params[:start_date] %>
+  </div>
+  <div>
+    <%= label_tag :end_date, 'Data de Término:' %>
+    <%= date_field_tag :end_date, params[:end_date] %>
+  </div>
+  <div>
+    <%= submit_tag 'Filtrar' %>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Data e Hora</th>
+    <th>Nome do Lead</th>
+    <th>Destino</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @lead_histories.each do |history| %>
+    <tr>
+      <td><%= history.sent_at %></td>
+      <td><%= history.score.name %></td>
+      <td><%= history.destination %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
