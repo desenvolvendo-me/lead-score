@@ -1,4 +1,3 @@
-# app/controllers/lead_histories_controller.rb
 class LeadHistoriesController < ApplicationController
   def index
     @lead_histories = LeadHistory.includes(:score).order(sent_at: :desc)
