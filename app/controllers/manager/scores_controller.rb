@@ -10,8 +10,6 @@ module Manager
       @score = score.find(params[:id])
       destination = params[:destination]
 
-      # Lógica de envio do lead
-      # ...
 
       @score.register_send(destination)
       redirect_to scores_path, notice: 'Lead enviado com sucesso!'
