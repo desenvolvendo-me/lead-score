@@ -8,11 +8,20 @@
 #  sent_at     :datetime
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  score_id    :bigint           not null
+#
+# Indexes
+#
+#  index_lead_histories_on_score_id  (score_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (score_id => scores.id)
 #
 FactoryBot.define do
   factory :lead_history do
-    sent_at { "2024-07-26 10:36:32" }
+    sent_at { Time.current }
     destination { "Destino" }
-    lead { nil }
+    association :score
   end
 end
