@@ -21,7 +21,6 @@
     <select name="destination" id="webhooks" class="form-select">
       <option value="webhook1">Webhook 1</option>
       <option value="webhook2">Webhook 2</option>
-      <!-- Adicione mais webhooks conforme necessário -->
     </select>
   </div>
 
@@ -29,7 +28,6 @@
     <% @scores.each do |score| %>
       <li class="px-4 py-5 sm:text-base text-sm items-start grid grid-cols-2 sm:grid-cols-12 gap-3 sm:gap-0 hover:bg-slate-50 transition ease-in-out duration-200 dark:hover:bg-slate-800">
         <div class="sm:col-span-3 sm:mb-0 mb-4 col-span-2 flex items-center space-x-2">
-          <!-- Checkbox -->
           <%= check_box_tag 'score_ids[]', score.id, false, class: "form-input-checkbox" %>
           <label class="ml-2" for="score_<%= score.id %>"></label>
 

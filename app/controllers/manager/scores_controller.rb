@@ -35,7 +35,6 @@ module Manager
           if response.success?
             score.register_send(destination)
           else
-            # Trate o erro conforme necessário, por exemplo, armazenando a falha no banco de dados
             Rails.logger.error "Falha ao enviar lead #{score.id} para #{destination}: #{response.body}"
           end
         end
