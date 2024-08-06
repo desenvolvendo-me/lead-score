@@ -8,4 +8,5 @@
 #  updated_at      :datetime         not null
 #
 class Answer < ApplicationRecord
+  validates_with AnswerValidator
 end
