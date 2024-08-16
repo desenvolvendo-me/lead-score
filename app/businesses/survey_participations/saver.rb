@@ -9,7 +9,7 @@ module SurveyParticipations
     def call
       return if @survey.empty?
 
-      map_survay_data
+      map_survey_data
       create_survey_participations
     end
 
@@ -23,7 +23,7 @@ module SurveyParticipations
       end
     end
 
-    def map_survay_data
+    def map_survey_data
       @survey_participations = SurveyParticipations::SurveyDataMapper.call(@survey)
     end
   end
