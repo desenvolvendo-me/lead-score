@@ -8,6 +8,9 @@ module Webhooks
       if body.present?
         begin
           JSON.parse(body)
+
+          SurveyParticipations::Saver.call(body)
+
           render json: {
             message: 'Webhook received successfully'
           }, status: :ok
