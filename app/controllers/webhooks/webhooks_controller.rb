@@ -7,13 +7,15 @@ module Webhooks
       body = request.body.read
       if body.present?
         begin
-          JSON.parse(body)
+          result = SurveyParticipations::Saver.call(JSON.parse(body))
 
-          SurveyParticipations::Saver.call(body)
-
-          render json: {
-            message: 'Webhook received successfully'
-          }, status: :ok
+          if result
+            render json: {
+              message: 'Survey received successfully'
+            }, status: :created
+          else
+            render json: { error: 'Survey is Empty' }, status: :bad_request
+          end
         rescue JSON::ParserError => e
           render json: {
             error: 'Invalid JSON format',

@@ -2,14 +2,29 @@
 
 module SurveyParticipations
   class Saver < BusinessApplication
-    def initialize(question_answer_pair)
-      @question_answer_pair = question_answer_pair
+    def initialize(survey)
+      @survey = survey
     end
 
     def call
-      SurveyParticipation.create(
-        question_answer_pair: @question_answer_pair
-      )
+      return if @survey.empty?
+
+      map_survay_data
+      create_survey_participations
+    end
+
+    private
+
+    def create_survey_participations
+      @survey_participations.each do |survey_participation|
+        SurveyParticipation.create(
+          question_answer_pair: survey_participation
+        )
+      end
+    end
+
+    def map_survay_data
+      @survey_participations = SurveyParticipations::SurveyDataMapper.call(@survey)
     end
   end
 end
