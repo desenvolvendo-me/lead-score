@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Webhooks::WebhooksController, type: :controller do
+  before do
+    User.create!(name: 'User 1',
+                 email: 'user1@mail.com',
+                 password: '000000',
+                 password_confirmation: '000000',
+                 confirmed_at: Time.zone.now,
+                 api_token: 'your-secret-api-token')
+  end
+
   describe 'POST #receive' do
     let(:valid_headers) do
       {
