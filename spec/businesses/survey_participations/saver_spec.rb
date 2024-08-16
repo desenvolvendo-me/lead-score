@@ -1,12 +1,33 @@
 require 'rails_helper'
 
 RSpec.describe SurveyParticipations::Saver do
-  let(:valid_data) do
-    {
-      'Além deste, você já comprou outro curso de Programação?' => 'Sim',
-      'Qual o seu nome?' => 'Thales Henrique Cardoso',
-      'Qual seu E-mail?' => 'thales.milion25@gmail.com'
-    }
+  let(:survey) do
+    [
+      {
+        '0' => 'Carimbo de data/hora',
+        '1' => 'Além deste, você já comprou outro curso de Programação?',
+        '2' => 'Qual o seu nome?',
+        '3' => 'Qual seu E-mail?'
+      },
+      {
+        '0' => '06/07/2024 21:38:50',
+        '1' => 'Sim',
+        '2' => 'Edinardo',
+        '3' => 'edinardobezerra@yahoo.com.br'
+      },
+      {
+        '0' => '08/07/2024 10:52:59',
+        '1' => 'Sim',
+        '2' => 'Thales Henrique Cardoso',
+        '3' => 'thales.milion25@gmail.com'
+      },
+      {
+        '0' => '08/07/2024 10:52:59',
+        '1' => 'Sim',
+        '2' => 'Roberto Figueiredo',
+        '3' => 'rb.f53@gmail.com'
+      }
+    ]
   end
 
   let(:invalid_data) do
@@ -17,8 +38,8 @@ RSpec.describe SurveyParticipations::Saver do
     context 'when data is valid' do
       it 'creates a survey participation and increases the count' do
         expect do
-          described_class.call(valid_data)
-        end.to change { SurveyParticipation.count }.by(1)
+          described_class.call(survey)
+        end.to change { SurveyParticipation.count }.by(3)
       end
     end
 
