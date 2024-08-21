@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe 'Webhooks', type: :request do
+  before do
+    User.create!(name: 'User 1',
+                 email: 'user1@mail.com',
+                 password: '000000',
+                 password_confirmation: '000000',
+                 confirmed_at: Time.zone.now,
+                 api_token: 'your-secret-api-token')
+  end
+
   describe 'POST /webhooks/receive' do
     let(:valid_headers) do
       {
@@ -9,24 +18,11 @@ RSpec.describe 'Webhooks', type: :request do
       }
     end
 
-    let(:random_name) { "User#{rand(1000..9999)}" }
-    let(:random_email) { "user#{rand(1000..9999)}@example.com" }
-    let(:random_phone) { "123-456-#{rand(1000..9999)}" }
-    let(:random_answers) do
-      {
-        'first answer' => %w[Sim Não].sample,
-        'second answer' => %w[Sim Não].sample
-      }
-    end
-
     let(:valid_body) do
       {
-        lead: {
-          name: random_name,
-          email: random_email,
-          phone: random_phone
-        },
-        answers: random_answers
+        'Além deste, você já comprou outro curso de Programação?': 'Sim',
+        'Qual o seu nome?': 'Thales Henrique Cardoso',
+        'Qual seu E-mail?': 'thales.milion25@gmail.com'
       }.to_json
     end
 
@@ -60,6 +56,27 @@ RSpec.describe 'Webhooks', type: :request do
         post '/webhooks/receive', headers: valid_headers, params: 'invalid_json'
         expect(response).to have_http_status(:bad_request)
         expect(JSON.parse(response.body)['error']).to eq('Invalid JSON format')
+      end
+    end
+
+    context 'when the participation is sent correctly' do
+      it 'the amount of survey participation increases' do
+
+        expect do
+          post '/webhooks/receive', headers: valid_headers, params: valid_body
+        end.to change(SurveyParticipation, :count).by(1)
+      end
+
+      it 'the json containing the questions and answers is saved correctly' do
+        post '/webhooks/receive', headers: valid_headers, params: valid_body
+
+        expect(SurveyParticipation.last.question_answer_pair).to eq(
+          {
+            'Além deste, você já comprou outro curso de Programação?': 'Sim',
+            'Qual o seu nome?': 'Thales Henrique Cardoso',
+            'Qual seu E-mail?': 'thales.milion25@gmail.com'
+          }.to_json
+        )
       end
     end
   end
