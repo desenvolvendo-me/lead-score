@@ -10,4 +10,6 @@
 class SurveyParticipation < ApplicationRecord
   validates :question_answer_pair, presence: true
   validates :question_answer_pair, non_empty_json: true
+
+  #asd asdfasdfasdf
 end
