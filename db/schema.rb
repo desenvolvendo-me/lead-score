@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_16_123329) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_24_015249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -135,6 +135,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_16_123329) do
     t.jsonb "question_answer_pair"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "consistency_status"
+    t.jsonb "inconsistency_details", default: []
   end
 
   create_table "tasks", force: :cascade do |t|
