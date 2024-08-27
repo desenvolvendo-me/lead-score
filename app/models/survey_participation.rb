@@ -17,7 +17,6 @@ class SurveyParticipation < ApplicationRecord
 
   enum consistency_status: {
     consistent: 'consistent',
-    inconsistent: 'inconsistent',
-    pending: 'pending'
+    inconsistent: 'inconsistent'
   }
 end
