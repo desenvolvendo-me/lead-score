@@ -1,0 +1,40 @@
+<div class="mb-4">
+  <%= search_form_for @q, url: manager_scores_path, method: :get, class: 'flex space-x-2' do |f| %>
+    <div class="flex items-center space-x-2">
+      <%= f.label :s, 'Ordenar por Score' %>
+      <%= f.select :s,
+                   [['Valor crescente', 'value asc'], ['Valor decrescente', 'value desc']],
+                   { selected: params.dig(:s) || 'value asc' },
+                   class: 'form-select'
+      %>
+      <%= f.submit 'Ordenar', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+
+<div class="mb-4">
+  <%= link_to 'Exportar CSV', export_manager_scores_path(s: params[:s]), class: 'btn btn-secondary' %>
+</div>
+
+<ul class="divide-y divide-slate-300/80 dark:divide-slate-600">
+  <% @scores.each do |score| %>
+    <li class="px-4 py-5 sm:text-base text-sm items-start grid grid-cols-2 sm:grid-cols-12 gap-3 sm:gap-0 hover:bg-slate-50 transition ease-in-out duration-200 dark:hover:bg-slate-800">
+      <div class="sm:col-span-3 sm:mb-0 mb-4 col-span-2 flex items-center space-x-2">
+        <!-- Checkbox -->
+        <input class="form-input-checkbox" type="checkbox" id="score_<%= score.id %>">
+        <label class="ml-2" for="score_<%= score.id %>"></label>
+
+        <div class="flex flex-col items-start space-y-1">
+          <p class="text-slate-500 text-sm">Nome</p>
+          <p class="sm:font-medium text-slate-900 sm:text-base text-lg font-semibold dark:text-slate-200"><%= score.name %></p>
+        </div>
+      </div>
+      <div class="sm:col-span-2 col-span-1">
+        <div class="flex flex-col items-start space-y-1">
+          <p class="text-sm text-slate-500">Valor</p>
+          <p><%= score.value %></p>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

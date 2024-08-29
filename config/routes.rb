@@ -1,6 +1,14 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+
   resources :posts
+  resources :weights
+
+  namespace :webhooks do
+    post 'receive', to: 'webhooks#receive'
+  end
+
+
 	get 'admin/integrations', to: 'page#integrations'
 	get 'admin/team', to: 'page#team'
 	get 'admin/billing', to: 'page#billing'
@@ -36,6 +44,12 @@ Rails.application.routes.draw do
   root action: :index, controller: "railsui/page"
 
   devise_for :users
+  namespace :manager do
+    get 'tokens', to: 'tokens#index'
+    post 'tokens/generate_token', to: 'tokens#generate'
+  end
+
+
   mount Sidekiq::Web => '/sidekiq'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   mount Rswag::Ui::Engine => '/api-docs'
@@ -64,8 +78,15 @@ Rails.application.routes.draw do
       end
     end
 
-    get '', to: 'home#index', as: :home
-  end
+    resources :scores do
+      collection do
+        get :export
+      end
+    end
+
+  get '', to: 'home#index', as: :home
+end
+
 
   scope module: :external do
     get '', to: 'home#index', as: :home
@@ -83,5 +104,4 @@ Rails.application.routes.draw do
       patch :update_stripe_info
     end
   end
-
 end

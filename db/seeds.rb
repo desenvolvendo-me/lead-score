@@ -18,6 +18,13 @@ if Rails.env.development?
     Rails.root.join('spec', 'support', 'images', 'avatar-1.jpg')),
                        filename: 'avatar-1', content_type: 'image/jpg')
 
+  # Create ApiToken
+  token = SecureRandom.hex(20)
+  ApiToken.create(token: token, client: user_1.client, user: user_1)
+
+  # Add api_token to user_1
+  user_1.update(api_token: token)
+
   goal1 = Goal.create(name: 'Aprender Linguagem Ruby',
                       description: 'Quero criar 10 algoritmos em até 3 meses', status: 'done', client: client_1)
   Task.create(name: '1ª agoritmo', description: 'Criar o algoritmo bubble sort',
@@ -92,5 +99,10 @@ if Rails.env.development?
                        description: 'Quero criar um chatbot em 1 mês', status: 'done', client: client_2)
   Task.create(name: 'Treinamento do modelo', description: 'Treinar um modelo de chatbot',
               status: "done", goal: goal15)
+
+
+  Score.create!(name: 'João', value: 100)
+  Score.create!(name: 'Alice', value: 80)
+  Score.create!(name: 'Maria', value: 95)
 
 end

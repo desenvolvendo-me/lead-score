@@ -3,6 +3,7 @@
 # Table name: clients
 #
 #  id                   :bigint           not null, primary key
+#  api_token            :string
 #  current_period_end   :datetime
 #  current_period_start :datetime
 #  document             :string
@@ -17,6 +18,7 @@
 #
 class Client < ApplicationRecord
   belongs_to :user
+  has_many :api_tokens, dependent: :destroy
 
   def update_stripe_customer
     begin
@@ -29,7 +31,7 @@ class Client < ApplicationRecord
       end
     rescue Stripe::StripeError => e
       Rails.logger.error "Stripe error: #{e.message}"
-      nil 
+      nil
     end
     customer
   end
