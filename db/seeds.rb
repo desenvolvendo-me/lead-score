@@ -98,4 +98,14 @@ if Rails.env.development?
   Score.create!(name: 'Alice', value: 80)
   Score.create!(name: 'Maria', value: 95)
 
+
+  return if LeadHistory.exists?
+
+  score1 = Score.create!(name: 'Maria', value: 80)
+  score2 = Score.create!(name: 'José', value: 95)
+
+  LeadHistory.create!(sent_at: 1.day.ago, destination: 'Destination A', score: score1)
+  LeadHistory.create!(sent_at: 2.days.ago, destination: 'Destination B', score: score2)
+
+
 end
