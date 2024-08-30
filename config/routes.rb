@@ -81,6 +81,7 @@ Rails.application.routes.draw do
     resources :scores do
       collection do
         get :export
+        get :export_csv
       end
     end
 
@@ -104,4 +105,5 @@ end
       patch :update_stripe_info
     end
   end
+
 end
