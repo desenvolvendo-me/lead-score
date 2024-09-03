@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: answer_tables
+# Table name: answers
 #
 #  id              :bigint           not null, primary key
 #  question_answer :jsonb
