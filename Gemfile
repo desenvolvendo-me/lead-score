@@ -36,6 +36,7 @@ gem 'turbo-rails'
 gem 'tzinfo-data',
     platforms: %i[mingw mswin x64_mingw jruby]
 gem 'yaml'
+gem 'httparty'
 
 group :development, :test do
   gem 'annotate'

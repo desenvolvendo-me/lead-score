@@ -80,7 +80,9 @@ Rails.application.routes.draw do
 
     resources :scores do
       collection do
+        post :manual_send
         get :export
+        get :history
       end
     end
 

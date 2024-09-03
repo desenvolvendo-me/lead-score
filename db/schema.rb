@@ -129,6 +129,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_16_123329) do
     t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "score_threshold", default: 0
+    t.boolean "auto_send_enabled", default: true
   end
 
   create_table "survey_participations", force: :cascade do |t|
