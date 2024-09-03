@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_03_173041) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_16_123329) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -133,6 +133,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_03_173041) do
     t.boolean "auto_send_enabled", default: true
   end
 
+  create_table "survey_participations", force: :cascade do |t|
+    t.jsonb "question_answer_pair"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -175,7 +181,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_03_173041) do
   create_table "weights", force: :cascade do |t|
     t.string "description"
     t.string "status"
-    t.jsonb "question_answer", default: "{}", null: false
+    t.jsonb "question_answer", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
