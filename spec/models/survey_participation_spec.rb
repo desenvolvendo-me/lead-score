@@ -2,10 +2,12 @@
 #
 # Table name: survey_participations
 #
-#  id                   :bigint           not null, primary key
-#  question_answer_pair :jsonb
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
+#  id                    :bigint           not null, primary key
+#  consistency_status    :string
+#  inconsistency_details :jsonb
+#  question_answer_pair  :jsonb
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
 #
 require 'rails_helper'
 

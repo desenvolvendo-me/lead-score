@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_16_123329) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_29_141504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,12 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_16_123329) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "answers", force: :cascade do |t|
-    t.jsonb "question_answer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "api_tokens", force: :cascade do |t|
     t.string "token", null: false
     t.bigint "user_id", null: false
@@ -135,6 +129,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_16_123329) do
     t.jsonb "question_answer_pair"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "consistency_status"
+    t.jsonb "inconsistency_details", default: []
   end
 
   create_table "tasks", force: :cascade do |t|
