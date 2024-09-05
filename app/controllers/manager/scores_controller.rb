@@ -6,8 +6,7 @@ module Manager
 
     def index
       @q = Score.ransack(params[:q])
-      order = params[:s] == 'value desc' ? { value: :desc } : { value: :asc }
-      @scores = @q.result.order(order)
+      @scores = @q.result.by_value(order_direction)
     end
 
     def export
@@ -31,20 +30,20 @@ module Manager
 
       begin
         scores.each do |score|
-          response = send_lead_to_webhook(score, destination)
-          if response.success?
-            score.register_send(destination)
-          else
-            Rails.logger.error "Falha ao enviar lead #{score.id} para #{destination}: #{response.body}"
-          end
+          SendLeadService.new(score, destination).call
         end
-        redirect_to manager_scores_path, notice: 'Leads enviados com sucesso!'
+        redirect_to manager_scores_path, notice: I18n.t('manager.scores.manual_send.success')
       rescue StandardError => e
-        redirect_to manager_scores_path, alert: "Falha ao enviar leads: #{e.message}"
+        redirect_to manager_scores_path, alert: I18n.t('manager.scores.manual_send.failure', error_message: e.message)
       end
     end
 
     private
+
+
+    def order_direction
+      params[:s] == 'value desc' ? :desc : :asc
+    end
 
     def set_ransack_params
       @q = Score.ransack(ransack_params)
