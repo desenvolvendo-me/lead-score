@@ -25,6 +25,23 @@ if Rails.env.development?
   # Add api_token to user_1
   user_1.update(api_token: token)
 
+  # Create Weight
+  Weight.create(
+    description: FFaker::Conference.name,
+    status: [:active, :inactive].sample,
+    question_answer: { 'Além deste, você já comprou outro curso de Programação?' => { 'Sim' => 10, 'Não' => 5 } }
+  )
+
+  # Create SurveyParticipation
+  SurveyParticipation.create(
+    question_answer_pair:       {
+      'Além deste, você já comprou outro curso de Programação?' => 'Sim',
+      'Qual o seu nome?' => 'Thales Henrique Cardoso',
+      'Qual seu E-mail?' => 'thales.milion25@gmail.com'
+    }
+  )
+
+  # Create Goals
   Goal.create(name: 'Aprender Linguagem Ruby',
                       description: 'Quero criar 10 algoritmos em até 3 meses', status: 'done', client: client_1)
 
