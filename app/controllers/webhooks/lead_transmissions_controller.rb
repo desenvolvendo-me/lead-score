@@ -17,7 +17,7 @@ module Webhooks
     def create
       @lead_transmission = LeadTransmission.new(lead_transmission_params)
       if @lead_transmission.save
-        redirect_to webhooks_lead_transmissions_path, notice: 'Lead transmission was successfully created.'
+        redirect_to webhooks_lead_transmissions_path, notice: I18n.t('lead_transmissions.destroy.success', default: 'Lead transmission was successfully destroyed.')
       else
         render :new
       end
@@ -28,7 +28,7 @@ module Webhooks
 
     def update
       if @lead_transmission.update(lead_transmission_params)
-        redirect_to webhooks_lead_transmissions_path, notice: 'Lead transmission was successfully updated.'
+        redirect_to webhooks_lead_transmissions_path, notice: I18n.t('lead_transmissions.update.success', default: 'Lead transmission was successfully updated.')
       else
         render :edit
       end
@@ -36,7 +36,7 @@ module Webhooks
 
     def destroy
       @lead_transmission.destroy
-      redirect_to webhooks_lead_transmissions_path, notice: 'Lead transmission was successfully destroyed.'
+      redirect_to webhooks_lead_transmissions_path, notice: I18n.t('lead_transmissions.destroy.success', default: 'Lead transmission was successfully destroyed.')
     end
 
     private

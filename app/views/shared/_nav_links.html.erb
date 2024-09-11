@@ -16,8 +16,8 @@
 <li>
   <%= nav_link_to "Scores", send("manager_scores_path"), class: "nav-link" %>
 </li>
-<% if user_signed_in? %>
-  <li>
-    <%= nav_link_to "Lead Transmissions", send("webhooks_lead_transmissions_path"), class: "nav-link" %>
-  </li>
-<% end %>
+
+<li>
+  <%= nav_link_to "Lead Transmissions", send("webhooks_lead_transmissions_path"), class: "nav-link" %>
+</li>
+
