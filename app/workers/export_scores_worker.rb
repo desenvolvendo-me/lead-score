@@ -10,7 +10,8 @@ class ExportScoresWorker
     file_path = Rails.root.join("tmp", "scores-#{Date.today}.csv")
     File.write(file_path, csv_data)
 
-    UserMailer.with(user: user, file_path: file_path).send_scores_csv.deliver_now
+    UserMailer.with(user: user, file_path: file_path).send_scores_csv.deliver_later
+
 
     File.delete(file_path) if File.exist?(file_path)
   end
