@@ -111,6 +111,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_29_141504) do
     t.integer "client_id"
   end
 
+  create_table "lead_transmissions", force: :cascade do |t|
+    t.string "webhook_url"
+    t.integer "min_score_threshold"
+    t.integer "max_score_threshold"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "active"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"

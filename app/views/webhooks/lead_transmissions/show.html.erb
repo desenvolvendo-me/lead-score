@@ -1,0 +1,34 @@
+<div class="max-w-5xl mx-auto px-4 my-16">
+  <h1 class="text-4xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight mb-6"><%= t('lead_transmission.details') %></h1>
+
+  <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg border border-slate-300 dark:border-slate-600">
+    <div class="mb-4">
+      <h2 class="text-lg font-semibold text-slate-700 dark:text-slate-200">Webhook URL</h2>
+      <p class="text-slate-900 dark:text-slate-100"><%= @lead_transmission.webhook_url %></p>
+    </div>
+
+    <div class="mb-4">
+      <h2 class="text-lg font-semibold text-slate-700 dark:text-slate-200"><%= t('lead_transmission.min_score') %></h2>
+      <p class="text-slate-900 dark:text-slate-100"><%= @lead_transmission.min_score_threshold %></p>
+    </div>
+
+    <div class="mb-4">
+      <h2 class="text-lg font-semibold text-slate-700 dark:text-slate-200"><%= t('lead_transmission.max_score') %></h2>
+      <p class="text-slate-900 dark:text-slate-100"><%= @lead_transmission.max_score_threshold %></p>
+    </div>
+
+    <div class="mb-4">
+      <h2 class="text-lg font-semibold text-slate-700 dark:text-slate-200"><%= t('lead_transmission.active') %></h2>
+      <p class="text-slate-900 dark:text-slate-100"><%= @lead_transmission.active ? "Yes" : "No" %></p>
+    </div>
+
+
+
+
+    <div class="flex items-center space-x-4">
+      <%= link_to t('lead_transmission.edit'), edit_webhooks_lead_transmission_path(@lead_transmission), class: "text-yellow-500 hover:underline" %>
+      <%= link_to t('lead_transmission.back'), webhooks_lead_transmissions_path, class: "text-blue-500 hover:underline" %>
+      <%= button_to t('lead_transmission.delete'), webhooks_lead_transmission_path(@lead_transmission), method: :delete, data: { confirm: 'Confirm Delete?' }, class: 'text-red-500 hover:underline' %>
+    </div>
+  </div>
+</div>
