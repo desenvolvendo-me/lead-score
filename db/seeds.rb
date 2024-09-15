@@ -18,6 +18,29 @@ if Rails.env.development?
     Rails.root.join('spec', 'support', 'images', 'avatar-1.jpg')),
                        filename: 'avatar-1', content_type: 'image/jpg')
 
+  # Create ApiToken
+  token = SecureRandom.hex(20)
+  ApiToken.create(token: token, client: user_1.client, user: user_1)
+
+  # Add api_token to user_1
+  user_1.update(api_token: token)
+
+  # Create Weight
+  Weight.create(
+    description: FFaker::Conference.name,
+    status: [:active, :inactive].sample,
+    question_answer: { 'Além deste, você já comprou outro curso de Programação?' => { 'Sim' => 10, 'Não' => 5 } }
+  )
+
+  # Create SurveyParticipation
+  SurveyParticipation.create(
+    question_answer_pair:       {
+      'Além deste, você já comprou outro curso de Programação?' => 'Sim',
+      'Qual o seu nome?' => 'Thales Henrique Cardoso',
+      'Qual seu E-mail?' => 'thales.milion25@gmail.com'
+    }
+  )
+
   goal1 = Goal.create(name: 'Aprender Linguagem Ruby',
                       description: 'Quero criar 10 algoritmos em até 3 meses', status: 'done', client: client_1)
   Task.create(name: '1ª agoritmo', description: 'Criar o algoritmo bubble sort',

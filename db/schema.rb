@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.0].define(version: 2024_07_25_181150) do
-
-
+ActiveRecord::Schema[7.0].define(version: 2024_08_29_141504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -91,12 +88,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_25_181150) do
     t.index ["token"], name: "index_api_tokens_on_token", unique: true
     t.index ["user_id"], name: "index_api_tokens_on_user_id"
   end
-    
-  create_table "answers", force: :cascade do |t|
-    t.jsonb "question_answer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "clients", force: :cascade do |t|
     t.string "document"
@@ -143,6 +134,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_25_181150) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "survey_participations", force: :cascade do |t|
+    t.jsonb "question_answer_pair"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "consistency_status"
+    t.jsonb "inconsistency_details", default: []
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -185,7 +184,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_25_181150) do
   create_table "weights", force: :cascade do |t|
     t.string "description"
     t.string "status"
-    t.jsonb "question_answer", default: "{}", null: false
+    t.jsonb "question_answer", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -2,43 +2,55 @@ require 'rails_helper'
 
 RSpec.describe Scoring::Calculator do
   describe '.calculate_score' do
-    let(:answer_instance) { create(:answer) }
-    let(:weight_instance) { create(:weight) }
-
-    it 'calculates the total score correctly' do
-      lead_answers = answer_instance.question_answer
-      json_answers = lead_answers["answers"]
-      json_weights = weight_instance.question_answer
-
-      total_score = Scoring::Calculator.calculate_score(json_answers, json_weights)
-
-      expected_score = 5 + 4
-      expect(total_score).to eq(expected_score)
+    let(:weight) do
+      instance_double(
+        'Weight',
+        description: 'Turma 21',
+        status: 'active',
+        question_answer: {
+          'Você já comprou algum curso de Programação?' => { 'Sim' => 5, 'Não' => 1 },
+          'Você está em transição de carreira?' => { 'Sim' => 4, 'Não' => 2 }
+        }
+      )
     end
 
-    it 'calculates the total score correctly with different JSON data' do
+    subject do
+      described_class.calculate_score(
+        survey_participation.question_answer_pair,
+        weight.question_answer
+      )
+    end
 
-      answer_instance.update(question_answer: {
-        lead: {
-          name: "Alice",
-          email: "alice@example.com",
-          telefone: "987654321"
-        },
-        answers: {
-          "Você já comprou algum curso de Programação?" => "Sim",
-          "Você está em transição de carreira?" => "Não"
-        }
-      })
+    context 'when the answers to both questions are yes' do
+      let(:survey_participation) do
+        instance_double(
+          'SurveyParticipation',
+          question_answer_pair: {
+            'Você já comprou algum curso de Programação?' => 'Sim',
+            'Você está em transição de carreira?' => 'Sim'
+          }
+        )
+      end
 
-      lead_answers = answer_instance.question_answer
-      json_answers = lead_answers["answers"]
-      json_weights = weight_instance.question_answer
+      it 'calculates the total score correctly' do
+        expect(subject).to eq(9)
+      end
+    end
 
-      total_score = Scoring::Calculator.calculate_score(json_answers, json_weights)
+    context 'when the answer to the first weights question is yes and the second is no' do
+      let(:survey_participation) do
+        instance_double(
+          'SurveyParticipation',
+          question_answer_pair: {
+            'Você já comprou algum curso de Programação?' => 'Sim',
+            'Você está em transição de carreira?' => 'Não'
+          }
+        )
+      end
 
-
-      expected_score = 5 + 2
-      expect(total_score).to eq(expected_score)
+      it 'calculates the total score correctly' do
+        expect(subject).to eq(7)
+      end
     end
   end
 end
