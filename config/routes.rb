@@ -105,4 +105,5 @@ end
       patch :update_stripe_info
     end
   end
+
 end

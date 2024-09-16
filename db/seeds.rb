@@ -121,4 +121,12 @@ if Rails.env.development?
   Score.create!(name: 'Alice', value: 80)
   Score.create!(name: 'Maria', value: 95)
 
+  csv_data = CSV.generate(headers: true) do |csv|
+    csv << ['Name', 'Score']
+    Score.all.each do |score|
+      csv << [score.name, score.value]
+    end
+  end
+
+  File.write(Rails.root.join("tmp", "scores-seed.csv"), csv_data)
 end
