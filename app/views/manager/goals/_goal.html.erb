@@ -48,12 +48,6 @@
           <span><%= t('.delete') %></span>
         <% end %>
       </li>
-      <li>
-        <%= link_to manager_goals_done_index_path(goal_id: goal), class: "px-4 py-[.4rem] hover:text-primary-600 dark:hover:text-primary-300 group flex items-center justify-start space-x-3" do %>
-          <%= icon "check", classes: "stroke-current w-5 h-5 text-slate-500 group-hover:text-primary-600 dark:group-hover:text-primary-400" %>
-          <span><%= t('.done') %></span>
-        <% end %>
-      </li>
     </ul>
   </div>
 </li>

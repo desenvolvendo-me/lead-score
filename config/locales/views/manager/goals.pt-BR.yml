@@ -10,7 +10,6 @@ pt-BR:
         filter_2: 'Não concluídas'
         show: 'Mostrar'
         actions: 'Ações'
-        action_1: 'Finalizar'
         pages:
           showing: 'Mostrando'
           of: 'de'
