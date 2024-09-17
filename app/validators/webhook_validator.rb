@@ -1,11 +1,6 @@
-require 'net/http'
-require 'uri'
-require 'json'
-
 class WebhookValidator
   def self.valid?(url)
     uri = URI.parse(url)
-
     request = Net::HTTP::Post.new(uri)
     request.content_type = "application/json"
     request.body = JSON.dump({ "test": "webhook_validation" })
@@ -22,6 +17,3 @@ class WebhookValidator
     end
   end
 end
-
-
-

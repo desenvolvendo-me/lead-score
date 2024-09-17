@@ -296,3 +296,31 @@ pt-BR:
 
 
 
+  lead_transmissions:
+    actions: "Ações"
+    create:
+      success: "O envio de lead foi criado com sucesso."
+    update:
+      success: "O envio de lead foi atualizado com sucesso."
+    destroy:
+      success: "O envio de lead foi removido com sucesso."
+    edit:
+      title: "Editar Envio de Lead"
+  activerecord:
+    attributes:
+      lead_transmission:
+        webhook_url: "URL do Webhook"
+        active: "Ativo"
+  lead_transmission:
+    show: "Mostrar"
+    edit: "Editar"
+    create: "Criar Envio de Lead"
+    update: "Atualizar Envio de Lead"
+    back: "Voltar"
+    delete: "Deletar"
+    confirm_delete: "Confirmar exclusão?"
+    details: "Detalhes do Envio de Lead"
+    min_score: "Valor Minimo do Score"
+    max_score: "Valor Máximo do Score"
+    active: "Ativo"
+
