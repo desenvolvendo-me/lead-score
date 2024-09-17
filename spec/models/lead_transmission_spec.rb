@@ -24,7 +24,7 @@ RSpec.describe LeadTransmission, type: :model do
         webhook_url: nil
       )
       expect(lead_transmission).not_to be_valid
-      expect(lead_transmission.errors[:webhook_url]).to include("não pode ficar em branco")  # Ajustado para o erro em português
+      expect(lead_transmission.errors[:webhook_url]).to include("não pode ficar em branco")  
     end
 
     it 'is not valid with an invalid webhook_url' do
@@ -35,12 +35,12 @@ RSpec.describe LeadTransmission, type: :model do
         active: true
       )
       expect(lead_transmission.save).to be false
-      expect(lead_transmission.errors[:webhook_url]).to include('is not valid')  # Verifica a mensagem de erro esperada
+      expect(lead_transmission.errors[:webhook_url]).to include('is not valid')  
     end
 
     it 'is valid with a known good webhook_url' do
       lead_transmission = LeadTransmission.new(
-        webhook_url: 'https://httpbin.org/post',  # URL que responde para um POST
+        webhook_url: 'https://httpbin.org/post', 
         min_score_threshold: 90,
         max_score_threshold: 100,
         active: true
