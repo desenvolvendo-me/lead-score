@@ -7,17 +7,5 @@ ActiveAdmin.register_page "Dashboard" do
         span "Bem Vindo ao Startup Mission"
       end
     end
-
-    columns do
-      column do
-        panel "Recentes Metas Finalizadas" do
-          ul do
-            Goal.done.last(5).map do |goal|
-              li link_to("#{goal.name}", admin_goal_path(goal))
-            end
-          end
-        end
-      end
-    end
   end
 end
