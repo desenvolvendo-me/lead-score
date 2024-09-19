@@ -1,6 +1,3 @@
 pt-BR:
   active_admin:
     goal:
-      tasks: 'Tarefas'
-      task:
-        nested: 'Detalhe das Tarefas'

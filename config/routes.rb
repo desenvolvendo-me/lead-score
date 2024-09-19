@@ -59,26 +59,8 @@ Rails.application.routes.draw do
              ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  namespace :api do
-    namespace :goals do
-      namespace :done do
-        post :index
-        post :show
-        post :many
-      end
-    end
-  end
-
   namespace :manager do
     resources :goals
-    namespace :goals do
-      namespace :done do
-        get :index
-        get :show
-        post :many
-      end
-    end
-
     resources :scores do
       collection do
         get :export

@@ -10,9 +10,6 @@ application.register("combo-select", ComboSelectController)
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
-import Goals__IndexController from "./goals/index_controller"
-application.register("goals--index", Goals__IndexController)
-
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

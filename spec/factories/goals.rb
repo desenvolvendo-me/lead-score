@@ -17,11 +17,5 @@ FactoryBot.define do
     description { FFaker::Lorem.sentence }
     status { 'todo' }
     association :client
-
-    trait :with_tasks do
-      after(:create) do |goal, _evaluator|
-        create_list(:task, 3, goal: goal)
-      end
-    end
   end
 end

@@ -40,12 +40,6 @@
     "updated_at": {
       "type": "string",
       "format": "date-time"
-    },
-    "tasks": {
-      "type": "array",
-      "items": {
-        "$ref": "file:/task.json#"
-      }
     }
   }
 }
