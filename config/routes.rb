@@ -60,7 +60,6 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   namespace :manager do
-    resources :goals
     resources :scores do
       collection do
         get :export
