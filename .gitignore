@@ -35,6 +35,8 @@
 /config/master.key
 
 !/app/assets/builds/.keep
+/app/assets/builds/tailwind.css
+
 
 node_modules
 .idea
