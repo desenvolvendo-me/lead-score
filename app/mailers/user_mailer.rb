@@ -7,5 +7,3 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Exportação de Scores')
   end
 end
-
-
