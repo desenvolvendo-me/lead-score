@@ -77,4 +77,5 @@ group :test do
   gem 'rspec-benchmark'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'webmock'
 end
