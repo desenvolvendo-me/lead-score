@@ -17,10 +17,21 @@ module Manager
       file_path = Rails.root.join('tmp', "scores-#{Date.today}.csv")
       File.write(file_path, csv_data)
 
-      flash[:notice] = "O CSV está sendo enviado por e-mail e baixado automaticamente."
-      ExportScoresWorker.perform_async(current_user.id, file_path.to_s)
-
       send_data csv_data, filename: "scores-#{Date.today}.csv", type: 'text/csv', disposition: 'attachment'
+    end
+
+    def send_csv_email
+      scores = Score.all
+      csv_data = Scoring::ScoreCsvExporter.generate(scores)
+
+      # Salva o CSV em um arquivo temporário
+      file_path = Rails.root.join('tmp', "scores-#{Date.today}.csv")
+      File.write(file_path, csv_data)
+
+      # Chama o job para processar o envio do email de forma assíncrona
+      ExportScoresJob.perform_async(current_user.email, file_path.to_s)
+
+      redirect_to manager_scores_path, notice: "O CSV está sendo enviado por e-mail."
     end
 
     private

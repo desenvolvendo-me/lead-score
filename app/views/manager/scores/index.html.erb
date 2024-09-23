@@ -16,6 +16,10 @@
   <%= link_to 'Exportar CSV', export_manager_scores_path(s: params[:s]), class: 'btn btn-secondary' %>
 </div>
 
+<div class="mb-4">
+  <%= button_to 'Enviar CSV por email', send_csv_email_manager_scores_path, method: :post, class: 'btn btn-secondary' %>
+</div>
+
 <ul class="divide-y divide-slate-300/80 dark:divide-slate-600">
   <% @scores.each do |score| %>
     <li class="px-4 py-5 sm:text-base text-sm items-start grid grid-cols-2 sm:grid-cols-12 gap-3 sm:gap-0 hover:bg-slate-50 transition ease-in-out duration-200 dark:hover:bg-slate-800">
