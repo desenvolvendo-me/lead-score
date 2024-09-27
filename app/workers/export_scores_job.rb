@@ -1,7 +1,7 @@
 class ExportScoresJob
   include Sidekiq::Job
 
-  def perform(user_id, file_path)
+  def perform(user_id)
     user = User.find(user_id)
 
     scores = Score.all
