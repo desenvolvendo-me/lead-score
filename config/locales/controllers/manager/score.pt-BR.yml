@@ -1,0 +1,7 @@
+pt-BR:
+  manager:
+    scores:
+      manual_send:
+        success: "Leads enviados com sucesso!"
+        failure: "Falha ao enviar leads: %{error}"
+        webhook_failure: "Falha ao enviar lead %{lead_id} para %{destination}: %{error}"
