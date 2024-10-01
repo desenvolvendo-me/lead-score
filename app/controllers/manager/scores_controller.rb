@@ -19,7 +19,8 @@ module Manager
         end
       end
 
-      send_data csv_data, filename: "scores-#{Date.today}.csv", type: 'text/csv; charset=utf-8'
+      send_data csv_data, filename: "scores-#{Date.today}.csv", 
+type: 'text/csv; charset=utf-8'
     end
 
     def manual_send
@@ -32,9 +33,10 @@ module Manager
         scores.each do |score|
           SendLeadService.new(score, destination).call
         end
-        redirect_to manager_scores_path, notice: I18n.t('manager.scores.manual_send.success')
+        redirect_to manager_scores_path, notice: t('.success')
       rescue StandardError => e
-        redirect_to manager_scores_path, alert: I18n.t('manager.scores.manual_send.failure', error_message: e.message)
+        redirect_to manager_scores_path,
+                    alert: t('.failure', error: e.message)
       end
     end
 
