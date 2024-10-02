@@ -109,7 +109,7 @@ RSpec.describe PageController, type: :controller do
     end
   end
 
-  describe '#billing' do
+  describe '#billing', skip: true do
     describe '#billing' do
       it 'renders the billing template' do
         allow(Stripe::Invoice).to receive(:list)

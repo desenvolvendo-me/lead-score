@@ -40,18 +40,24 @@ RSpec.describe Manager::ScoresController, type: :controller do
 
   describe 'POST #manual_send' do
     let(:webhook_url) { 'http://example.com/webhook' }
+    let(:error) { 'Erro de envio' }
 
-    before do
-      allow(controller).to receive(:send_lead_to_webhook).and_return(double(success?: true, body: ''))
-    end
+    context 'when there is an error during sending' do
+      it 'handles errors gracefully' do
+        allow_any_instance_of(SendLeadService).to receive(:call).and_raise(
+          StandardError, error
+        )
 
-    it 'handles errors gracefully' do
-      allow(controller).to receive(:send_lead_to_webhook).and_raise(StandardError, 'Erro de envio')
+        post :manual_send,
+             params: {
+               score_ids: [score1.id, score2.id], destination: webhook_url
+             }
 
-      post :manual_send, params: { score_ids: [score1.id, score2.id], destination: webhook_url }
-
-      expect(response).to redirect_to(manager_scores_path)
-      expect(flash[:alert]).to eq('Falha ao enviar leads: Erro de envio')
+        expect(response).to redirect_to(manager_scores_path)
+        expect(flash[:alert]).to eq(
+          I18n.t('manager.scores.manual_send.failure', error: error)
+        )
+      end
     end
   end
 end
